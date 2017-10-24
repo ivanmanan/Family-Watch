@@ -21,12 +21,26 @@
    sudo apt-get install mysql-server
    ```
 
-4.
+4. Enter your database credentials.
+   ```bash
+   cp skeleton.js config.js
+   nano config.js
+   ```
 
-4. Install Bootstrap
+5. Run the SQL script to set-up the bare-essentials for the database. Make sure
+   you are running this command in the Police-Watch directory.
+   ```bash
+   $ mysql -u root -p <PASSWORD>
+   mysql> create database police;
+   mysql> use police;
+   mysql> source ./police.sql;
+   mysql> exit
+   ```
+
+6. Install Bootstrap
    Instructions will be posted later.
 
-5. Run on localhost.
+7. Run on localhost.
    ```bash
    npm start
    ```
