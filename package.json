@@ -14,11 +14,11 @@
     "url": "git+https://github.com/ivanmanan/JumbleXplore.git"
   },
   "keywords": [
-    "travel",
-    "explore"
+    "Police",
+    "Neighborhood"
   ],
   "author": "Ivan Manan, Yongbum, Lewis, and Brian",
-  "license": "CS M117",
+  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/ivanmanan/"
   },
@@ -29,6 +29,8 @@
     "ejs": "^2.5.7",
     "express": "^4.15.4",
     "morgan": "^1.8.2",
+    "mysql": "^2.15.0",
+    "mysql-server": "^1.0.5",
     "serve-favicon": "^2.4.4"
   },
   "devDependencies": {
