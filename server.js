@@ -28,8 +28,7 @@ app.use(cookieParser());
 // Set port
 var port = process.env.PORT || 3001;
 
-// Set connect to MySQL
-// Must move database credentials to db.cfg file and place in .gitignore file
+// Connect to MySQL
 var mysql = require('mysql');
 config = require("./config");
 db = config.database;
@@ -48,36 +47,18 @@ connection.connect(function(err) {
 ////////////////////////////////////////////////////////////////////////
 // Routes
 
-var users = require('./routes/users');
-app.use('/users', users);
-/*
-
-app.use('/', require('./routes/index')); // configure our routes
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+var backend = require('./routes/backend');
+app.use('/backend', backend);
 
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-*/
+
 
 ////////////////////////////////////////////////////////////////////////
 // Start Application
 
-// startup at localhost:5000
+// Server at localhost:3000
+// React client running at localhost:3001
 app.listen(port);
 console.log('Server running on port 3001...');
 

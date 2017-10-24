@@ -70,10 +70,12 @@ general feel of these libraries.
    guide](https://www.w3schools.com/bootstrap/bootstrap_grid_basic.asp) - This
    is needed for mobile interfaces.
 
-3. [Google Maps
+4. [Google Maps
    API](https://developers.google.com/maps/documentation/javascript/adding-a-google-map)
 
-4. [Google Maps API with
+5. [Google Maps API with
    React.js](https://www.fullstackreact.com/articles/how-to-write-a-google-maps-react-component/)
 
-5. Need to figure out how to use GPS embedded in our mobile devices.
+6. Need to figure out how to use GPS embedded in our mobile devices.
+
+7. [Setting up server](https://www.fullstackreact.com/articles/using-create-react-app-with-a-server/)
