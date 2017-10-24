@@ -16,7 +16,7 @@
    ```bash
    npm install mysql
    ```
-3. Set up localhost password for MySQL.
+3. Set up localhost password for MySQL. For [MacOS, use this guide](https://dev.mysql.com/doc/refman/5.6/en/osx-installation-pkg.html).
    ```bash
    sudo apt-get install mysql-server
    ```
