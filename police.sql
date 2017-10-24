@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS Police;
+
+CREATE TABLE Police (
+       Police_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+       Name varchar(255) NOT NULL
+);
+
+INSERT INTO Police (Name) VALUES ("Host");

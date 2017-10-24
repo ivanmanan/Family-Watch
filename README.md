@@ -16,10 +16,12 @@
    ```bash
    npm install mysql
    ```
-3. Set up localhost password for MySQL.
+3. Set up localhost password for MySQL. (Use Homebrew for MacOS)
    ```bash
    sudo apt-get install mysql-server
    ```
+
+4.
 
 4. Install Bootstrap
    Instructions will be posted later.

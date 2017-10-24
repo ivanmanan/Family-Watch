@@ -1,7 +1,7 @@
 {
-  "name": "jumblex",
+  "name": "police-watch",
   "version": "1.0.0",
-  "description": "Document your travels and share with others!",
+  "description": "Police location tracker",
   "main": "server.js",
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
@@ -17,12 +17,12 @@
     "travel",
     "explore"
   ],
-  "author": "Ivan Manan",
-  "license": "MIT",
+  "author": "Ivan Manan, Yongbum, Lewis, and Brian",
+  "license": "CS M117",
   "bugs": {
-    "url": "https://github.com/ivanmanan/JumbleXplore/issues"
+    "url": "https://github.com/ivanmanan/"
   },
-  "homepage": "https://github.com/ivanmanan/JumbleXplore#readme",
+  "homepage": "https://github.com/ivanmanan/",
   "dependencies": {
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
