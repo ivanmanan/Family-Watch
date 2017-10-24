@@ -1,0 +1,37 @@
+{
+  "name": "jumblex",
+  "version": "1.0.0",
+  "description": "Document your travels and share with others!",
+  "main": "server.js",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "PORT=3001 node server.js",
+    "client": "node start-client.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivanmanan/JumbleXplore.git"
+  },
+  "keywords": [
+    "travel",
+    "explore"
+  ],
+  "author": "Ivan Manan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ivanmanan/JumbleXplore/issues"
+  },
+  "homepage": "https://github.com/ivanmanan/JumbleXplore#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "morgan": "^1.8.2",
+    "serve-favicon": "^2.4.4"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.0"
+  }
+}
