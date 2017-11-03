@@ -1,25 +1,40 @@
 import React, { Component } from 'react';
+/* import Sample from './Sample';*/
+import Maps from './Maps';
+import Panel from './Panel';
+import Profile from './Profile';
 
 class App extends Component {
-
-  // Initial empty state to prevent users.map from blowing up
-  // before users are loaded
-  state = {users: []}
-
-  componentDidMount() {
-    fetch('/users')
-      .then(res => res.json())
-      .then(users => this.setState({ users }));
-  }
 
   render() {
     return (
       <div className="App">
-        <h1>Users</h1>
-        {this.state.users.map(user =>
-          <div key={user.id}>{user.username}</div>
-        )}
-      </div>
+          <div className="row">
+
+            <div className="Profile-block
+              col-md-2
+              col-sm-2
+              col-xs-2">
+              <Profile/>
+            </div>
+
+            <div className="Maps-block
+              col-md-7
+              col-sm-6
+              col-xs-6">
+              {/* <Sample/> */}
+              <Maps/>
+            </div>
+
+            <div className="Panel-block
+              col-md-3
+              col-sm-4
+              col-xs-4">
+              <Panel/>
+            </div>
+
+          </div>
+        </div>
     );
   }
 }
