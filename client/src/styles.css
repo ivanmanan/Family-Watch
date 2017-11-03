@@ -13,7 +13,7 @@ body{
 /* Profile Block */
 .Profile-block{
     padding-bottom: 47.2%; /* This will be changed to 100% in the end */
-    background-color: palegreen;
+    background-color: lavender;
 }
 .Profile{
     height: 100%;
@@ -21,7 +21,12 @@ body{
 .Profile h1{
     font-weight: bold;
 }
-
+#eye-logo{
+    max-width: 80%;
+    max-height: 80%;;
+    width: auto;
+    height: auto;
+}
 
 
 /* Maps Block */
