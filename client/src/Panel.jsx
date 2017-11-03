@@ -6,7 +6,7 @@ class Panel extends Component {
 
   render() {
     return (
-      <div className="Panel">
+      <div className="Panel text-center">
         <h1>This is the Panel.</h1>
       </div>
     );

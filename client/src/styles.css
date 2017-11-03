@@ -1,0 +1,46 @@
+html {
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden; /* Hide vertical scroll bar */
+    overflow-x: hidden; /* Hide horizontal scroll bar */
+}
+body{
+    font-family: Sans-Serif, times-new-roman, Times;
+    height: 100%;
+    font-size: 100%;
+}
+
+/* Profile Block */
+.Profile-block{
+    padding-bottom: 47.2%; /* This will be changed to 100% in the end */
+    background-color: palegreen;
+}
+.Profile{
+    height: 100%;
+}
+.Profile h1{
+    font-weight: bold;
+}
+
+
+
+/* Maps Block */
+.Maps-block{
+
+}
+.Maps{
+
+}
+
+
+/* Panel Block */
+.Panel-block{
+    padding-bottom: 47.2%; /* This will be changed to 100% in the end */
+    background-color: lavender;
+}
+.Panel{
+
+}
+.Panel h1{
+    font-weight: bold;
+}
