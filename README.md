@@ -50,8 +50,7 @@
    mysql> exit
    ```
 
-7. Install Bootstrap.
-   Instructions will be posted later.
+7. [Install Bootstrap](https://react-bootstrap.github.io/getting-started.html).
 
 8. Run on localhost.
    ```bash
@@ -95,5 +94,3 @@ general feel of these libraries.
 
 8. [See Proposal](https://github.com/ivanmanan/police-watch/blob/master/reads/TeamNeighborhood.pdf).
    server](https://www.fullstackreact.com/articles/using-create-react-app-with-a-server/).
-
-8. [Installing Boostrap](https://react-bootstrap.github.io/getting-started.html).
