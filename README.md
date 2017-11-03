@@ -53,7 +53,7 @@
 7. Install Bootstrap.
    ```bash
    npm install --save react react-dom
-    npm install --save react-bootstrap
+   npm install --save react-bootstrap
    ```
 
 8. Run on localhost.
@@ -64,7 +64,7 @@
 ## Division
 
 1. Get GPS working on mobile devices. Get server setup. Be able to render Maps
-   onto front-end.
+   onto front-end. Create and query MySQL in Node.js.
 
 2. Set-up user accounts. Be able to personalize on front-end and back-end.
 

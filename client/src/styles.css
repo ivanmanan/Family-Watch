@@ -4,43 +4,79 @@ html {
     overflow-y: hidden; /* Hide vertical scroll bar */
     overflow-x: hidden; /* Hide horizontal scroll bar */
 }
-body{
+body {
     font-family: Sans-Serif, times-new-roman, Times;
     height: 100%;
     font-size: 100%;
 }
 
-/* Profile Block */
-.Profile-block{
-    padding-bottom: 47.2%; /* This will be changed to 100% in the end */
-    background-color: palegreen;
+/* Nav Bar */
+.navbar {
+    padding-bottom: 0%;
+    margin-bottom: 0px;
 }
-.Profile{
+#heading {
+    color: white;
+    font-size: 4vw;
+}
+.navbar-header {
+    float: left;
+    padding-bottom: 10px;
+    text-align: center;
+    width: 100%;
+}
+.navbar-brand {
+    float:none;
+}
+
+/* Profile Block */
+.Profile-block {
+    padding-bottom: 100%;
+    margin-bottom: 100%;
+    background-color: lightgray;
+}
+.Profile {
     height: 100%;
 }
-.Profile h1{
+#eye-logo {
+    max-width: 70%;
+    max-height: 70%;
+    width: auto;
+    height: auto;
+    margin-top: 15%;
+}
+.Profile h1 {
     font-weight: bold;
 }
-
-
+.Profile h2 {
+    margin-top: 25%;
+}
 
 /* Maps Block */
-.Maps-block{
+.Maps-block {
 
 }
-.Maps{
+.Maps {
 
 }
 
 
 /* Panel Block */
-.Panel-block{
-    padding-bottom: 47.2%; /* This will be changed to 100% in the end */
-    background-color: lavender;
+.Panel-block {
+    padding-bottom: 100%;
+    margin-bottom: 100%;
+    background-color: lightgray;
 }
-.Panel{
+.Panel {
 
 }
-.Panel h1{
+#settings-logo {
+    max-width: 45%;
+    max-height: 45%;
+    width: auto;
+    height: auto;
+    margin-top: 10%;
+}
+.Panel h1 {
     font-weight: bold;
 }
