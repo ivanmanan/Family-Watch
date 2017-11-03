@@ -12,6 +12,7 @@ class Profile extends Component {
       <div className="Profile text-center">
         <h1>Ivan</h1>
         <img id="eye-logo" src="/images/sauron.png" alt="Police-Watch"/>
+        <h2>Host</h2>
       </div>
     );
   }
