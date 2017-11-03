@@ -4,60 +4,79 @@ html {
     overflow-y: hidden; /* Hide vertical scroll bar */
     overflow-x: hidden; /* Hide horizontal scroll bar */
 }
-body{
+body {
     font-family: Sans-Serif, times-new-roman, Times;
     height: 100%;
     font-size: 100%;
 }
 
+/* Nav Bar */
+.navbar {
+    padding-bottom: 0%;
+    margin-bottom: 0px;
+}
+#heading {
+    color: white;
+    font-size: 4vw;
+}
+.navbar-header {
+    float: left;
+    padding-bottom: 10px;
+    text-align: center;
+    width: 100%;
+}
+.navbar-brand {
+    float:none;
+}
+
 /* Profile Block */
-.Profile-block{
+.Profile-block {
     padding-bottom: 100%;
     margin-bottom: 100%;
-    background-color: lavender;
+    background-color: lightgray;
 }
-.Profile{
+.Profile {
     height: 100%;
 }
-#eye-logo{
+#eye-logo {
     max-width: 70%;
     max-height: 70%;
     width: auto;
     height: auto;
     margin-top: 15%;
 }
-.Profile h1{
+.Profile h1 {
     font-weight: bold;
 }
-.Profile h2{
+.Profile h2 {
     margin-top: 25%;
 }
 
 /* Maps Block */
-.Maps-block{
+.Maps-block {
 
 }
-.Maps{
+.Maps {
 
 }
 
 
 /* Panel Block */
-.Panel-block{
+.Panel-block {
     padding-bottom: 100%;
     margin-bottom: 100%;
-    background-color: lavender;
+    background-color: lightgray;
 }
-.Panel{
+.Panel {
 
 }
-#settings-logo{
+#settings-logo {
     max-width: 45%;
     max-height: 45%;
     width: auto;
     height: auto;
     margin-top: 10%;
 }
-.Panel h1{
+.Panel h1 {
     font-weight: bold;
 }
