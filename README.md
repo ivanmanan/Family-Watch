@@ -50,7 +50,11 @@
    mysql> exit
    ```
 
-7. [Install Bootstrap](https://react-bootstrap.github.io/getting-started.html).
+7. Install Bootstrap.
+   ```bash
+   npm install --save react react-dom
+    npm install --save react-bootstrap
+   ```
 
 8. Run on localhost.
    ```bash
