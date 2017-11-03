@@ -90,6 +90,10 @@ general feel of these libraries.
 6. Need to figure out how to use GPS embedded in our mobile devices.
 
 7. [Setting up
+<<<<<<< HEAD
    server](https://www.fullstackreact.com/articles/using-create-react-app-with-a-server/)
 
 8. [See Proposal](https://github.com/ivanmanan/police-watch/blob/master/reads/TeamNeighborhood.pdf).
+   server](https://www.fullstackreact.com/articles/using-create-react-app-with-a-server/).
+
+8. [Installing Boostrap](https://react-bootstrap.github.io/getting-started.html).
