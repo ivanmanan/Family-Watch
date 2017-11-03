@@ -1,6 +1,7 @@
 # Content
 * Expected Functionalities
 * Installation Instructions
+* Division
 * Resources
 
 ## Expected Functionalities
@@ -11,7 +12,7 @@
 
 2. Participants will be logged in and their locations will be tracked.
 
-3. If there is extra time: The host will be able to see location history of all
+3. The host will be able to see location history of all
    the participants after every certain interval of time.
 
 ## Installation Instructions
@@ -57,6 +58,16 @@
    npm start
    ```
 
+## Division
+
+1. Get GPS working on mobile devices. Get server setup. Be able to render Maps
+   onto front-end.
+
+2. Set-up user accounts. Be able to personalize on front-end and back-end.
+
+3. Set-up location history. Host be able to see all locations [hopefully] in
+   real time.
+
 ## Resources
 
 Do not waste hours on these tutorials. Just skim through until you get the
@@ -78,4 +89,7 @@ general feel of these libraries.
 
 6. Need to figure out how to use GPS embedded in our mobile devices.
 
-7. [Setting up server](https://www.fullstackreact.com/articles/using-create-react-app-with-a-server/)
+7. [Setting up
+   server](https://www.fullstackreact.com/articles/using-create-react-app-with-a-server/)
+
+8. [See Proposal]().
