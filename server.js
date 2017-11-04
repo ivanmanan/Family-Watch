@@ -28,6 +28,8 @@ app.use(cookieParser());
 // Set port
 var port = process.env.PORT || 3001;
 
+
+////////////////////////////////////////////////////////////////////////
 // Connect to MySQL
 var mysql = require('mysql');
 config = require("./config");
@@ -50,6 +52,12 @@ connection.query('SELECT * from User;', function(err, rows, fields) {
   else
     console.log('Error while performing Query.');
 });
+
+
+
+
+////////////////////////////////////////////////////////////////////////
+// Feed GPS Coordinates
 
 
 ////////////////////////////////////////////////////////////////////////

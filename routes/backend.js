@@ -4,13 +4,13 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 
-  var nametest = "ivan tester";
+
 
 
   res.json([
     {
   	  id: 1,
-  	  name: nametest
+  	  name: "ivan"
     }, {
   	  id: 2,
   	  name: "lewis"
