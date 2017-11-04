@@ -30,10 +30,21 @@ var port = process.env.PORT || 3001;
 
 ////////////////////////////////////////////////////////////////////////
 // Feed GPS Coordinates
+// todo: I may want to move all of this into another file or into
+// backend.js
+
+console.log("===================================================");
+console.log("GPS Testing");
+
+var GPS = require('gps');
+var gps = new GPS;
+gps.on('data', function(parsed) {
+    console.log(parsed);
+});
 
 
-
-
+console.log("End of GPS Testing");
+console.log("===================================================");
 ////////////////////////////////////////////////////////////////////////
 // Routes
 
