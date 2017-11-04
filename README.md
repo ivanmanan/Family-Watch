@@ -96,3 +96,4 @@ general feel of these libraries.
    server](https://www.fullstackreact.com/articles/using-create-react-app-with-a-server/)
 
 8. [See Proposal](https://github.com/ivanmanan/police-watch/blob/master/reads/TeamNeighborhood.pdf)
+
