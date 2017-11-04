@@ -57,9 +57,19 @@ app.use('/backend', backend);
 ////////////////////////////////////////////////////////////////////////
 // Start Application
 
-// Server at localhost:3000
-// React client running at localhost:3001
+// Server at localhost:3001
+// React client running at localhost:3000
 app.listen(port);
 console.log('Server running on port 3001...');
 
 module.exports = app;
+
+
+////////////////////////////////////////////////////////////////////////
+// Launch Server
+// var http = require('http');
+// http.createServer(function (req, res) {
+//   res.writeHead(200, {'Content-Type': 'text/plain'});
+//   res.write('Hello World!');
+//   res.end();
+// }).listen(5000);

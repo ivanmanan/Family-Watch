@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-/* import Sample from './Sample';*/
+import Sample from './Sample';
 import Maps from './Maps';
 import Panel from './Panel';
 import Profile from './Profile';
@@ -29,7 +29,7 @@ class App extends Component {
             col-md-7
             col-sm-6
             col-xs-6">
-            {/* <Sample/> */}
+            <Sample/>
             <Maps/>
           </div>
 
