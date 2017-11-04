@@ -44,14 +44,19 @@ connection.connect(function(err) {
   console.log('You are now connected to the MySQL Database.')
 })
 
+connection.query('SELECT * from User;', function(err, rows, fields) {
+  if (!err)
+    console.log('The solution is: ', rows);
+  else
+    console.log('Error while performing Query.');
+});
+
+
 ////////////////////////////////////////////////////////////////////////
 // Routes
 
 var backend = require('./routes/backend');
 app.use('/backend', backend);
-
-
-
 
 
 ////////////////////////////////////////////////////////////////////////
