@@ -43,7 +43,7 @@
 6. Run the SQL script to set-up the bare-essentials for the database. Make sure
    you are running this command in the police-watch directory.
    ```bash
-   $ mysql -u root -p <PASSWORD>
+   $ mysql -u root -p
    mysql> create database police;
    mysql> use police;
    mysql> source ./police.sql;

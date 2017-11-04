@@ -4,9 +4,9 @@
 // Modules
 const express = require('express');
 const app = express();
-var cookieParser = require('cookie-parser'); // not sure what this does yet
-var bodyParser = require('body-parser'); // pulls information from HTML POST
-var favicon = require('serve-favicon'); // obtains favicon from /public/images
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var favicon = require('serve-favicon');
 
 ////////////////////////////////////////////////////////////////////////
 // Configurations
@@ -62,8 +62,8 @@ app.use('/backend', backend);
 ////////////////////////////////////////////////////////////////////////
 // Start Application
 
-// Server at localhost:3000
-// React client running at localhost:3001
+// Server at localhost:3001
+// React client running at localhost:3000
 app.listen(port);
 console.log('Server running on port 3001...');
 
