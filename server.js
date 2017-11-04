@@ -36,15 +36,6 @@ var port = process.env.PORT || 3001;
 console.log("===================================================");
 console.log("GPS Testing");
 
-var GPS = require('gps');
-var gps = new GPS;
-gps.on('data', function(parsed) {
-    console.log(parsed);
-});
-
-
-console.log("End of GPS Testing");
-console.log("===================================================");
 ////////////////////////////////////////////////////////////////////////
 // Routes
 
