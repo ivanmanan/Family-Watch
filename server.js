@@ -4,9 +4,9 @@
 // Modules
 const express = require('express');
 const app = express();
-var cookieParser = require('cookie-parser'); // not sure what this does yet
-var bodyParser = require('body-parser'); // pulls information from HTML POST
-var favicon = require('serve-favicon'); // obtains favicon from /public/images
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var favicon = require('serve-favicon');
 
 ////////////////////////////////////////////////////////////////////////
 // Configurations
@@ -63,13 +63,3 @@ app.listen(port);
 console.log('Server running on port 3001...');
 
 module.exports = app;
-
-
-////////////////////////////////////////////////////////////////////////
-// Launch Server
-// var http = require('http');
-// http.createServer(function (req, res) {
-//   res.writeHead(200, {'Content-Type': 'text/plain'});
-//   res.write('Hello World!');
-//   res.end();
-// }).listen(5000);
