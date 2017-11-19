@@ -3,9 +3,17 @@ import {geolocated} from 'react-geolocated';
 
 class Location extends Component {
 
+
   // Send GPS coordinates to server
   handleLocation() {
 
+
+
+
+
+    // Need to setup timer to trigger this function or make
+    // this function into a for-loop -- this must run in parallel
+    // with the rest of the web application
     const coordinates = (
       <div>
         <h2>
@@ -16,8 +24,6 @@ class Location extends Component {
         </h2>
       </div>
     );
-
-
     return coordinates;
   }
   render() {
