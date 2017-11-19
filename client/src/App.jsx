@@ -3,6 +3,7 @@ import Sample from './Sample';
 import Maps from './Maps';
 import Panel from './Panel';
 import Profile from './Profile';
+import Location from './Location';
 
 class App extends Component {
 
@@ -31,6 +32,7 @@ class App extends Component {
             col-xs-6">
             <Sample/>
             <Maps/>
+            <Location/>
           </div>
 
           <div className="Panel-block

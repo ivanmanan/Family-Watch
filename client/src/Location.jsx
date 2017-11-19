@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Gps from './Gps';
 
-class Maps extends React.Component {
+class Location extends Component {
 
   render() {
     return (
       <div>
-        <h1>Testing Maps</h1>
+        <h1>Testing Location</h1>
 
       </div>
     );
   }
 }
 
-export default Maps;
+export default Location;

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {geolocated} from 'react-geolocated';
 
-class Location extends React.Component {
+class Location extends Component {
   render() {
     return !this.props.isGeolocationAvailable
          ? <div>Your browser does not support Geolocation</div>

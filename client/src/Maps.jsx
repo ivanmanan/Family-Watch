@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class Maps extends React.Component {
+class Maps extends Component {
 
   render() {
     return (
