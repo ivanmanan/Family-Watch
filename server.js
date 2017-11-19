@@ -92,12 +92,15 @@ console.log("===================================================");
 console.log("GPS Testing");
 
 app.post('/coordinates', function(req,res) {
-
+  console.log(req);
   console.log("Running query...");
-/*
-  var longitude = req.longitude;
-  var latitude = req.latitude;
+  var data = req.body;
+  var longitude = req.body.longitude;
+  var latitude = req.body.latitude;
+  console.log(req.body);
+  // The '1' number will be replaced with the respective user id's
 
+/*
   connection.query('INSERT INTO GPS (hid, Longitude, Latitude) VALUES ("'
                    + 1 + '", "' + longitude + '", "' + latitude + '");');
 
