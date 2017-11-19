@@ -217,12 +217,17 @@ router.get('/', function(req, res, next) {
 console.log("===================================================");
 console.log("GPS Testing");
 
+router.post('/coordinates', function(req,res) {
 
+  var longitude = req.longitude;
+  var latitude = req.latitude;
 
+  connection.query('INSERT INTO GPS (hid, Longitude, Latitude) VALUES ("'
+                   + 1 + '", "' + longitude + '", "' + latitude + '");');
 
+  res.end("Success!");
 
-
-
+});
 
 ////////////////////////////////////////////////////////////////////////
 // End
