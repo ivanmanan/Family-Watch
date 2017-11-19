@@ -140,8 +140,6 @@ router.get('/', function(req, res, next) {
   ]);
 });
 
-<<<<<<< HEAD
-module.exports = router;
 //
 // //Define MySQL parameter in Config.js file.
 // var connection = mysql.createConnection({
@@ -211,7 +209,6 @@ module.exports = router;
 //   res.redirect('/login')
 // }
 // app.listen(3000);
-=======
 ////////////////////////////////////////////////////////////////////////
 // Feed GPS Coordinates
 // todo: I may want to move all of this into another file or into
@@ -230,5 +227,3 @@ console.log("GPS Testing");
 ////////////////////////////////////////////////////////////////////////
 // End
 module.exports = router;
-
->>>>>>> master
