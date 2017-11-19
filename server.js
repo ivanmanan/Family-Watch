@@ -7,6 +7,7 @@ const app = express();
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
+const io = require('socket.io')(); // Socket
 
 ////////////////////////////////////////////////////////////////////////
 // Configurations
@@ -27,12 +28,6 @@ app.use(cookieParser());
 
 // Set port
 var port = process.env.PORT || 3001;
-
-////////////////////////////////////////////////////////////////////////
-// Feed GPS Coordinates
-
-
-
 
 ////////////////////////////////////////////////////////////////////////
 // Routes

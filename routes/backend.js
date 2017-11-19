@@ -121,10 +121,6 @@ var express           =     require('express')
 //
 // /* GET users listing. */
 router.get('/', function(req, res, next) {
-
-
-
-
   res.json([
     {
   	  id: 1,
@@ -144,6 +140,7 @@ router.get('/', function(req, res, next) {
   ]);
 });
 
+<<<<<<< HEAD
 module.exports = router;
 //
 // //Define MySQL parameter in Config.js file.
@@ -214,3 +211,24 @@ module.exports = router;
 //   res.redirect('/login')
 // }
 // app.listen(3000);
+=======
+////////////////////////////////////////////////////////////////////////
+// Feed GPS Coordinates
+// todo: I may want to move all of this into another file or into
+// backend.js
+
+console.log("===================================================");
+console.log("GPS Testing");
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////
+// End
+module.exports = router;
+
+>>>>>>> master
