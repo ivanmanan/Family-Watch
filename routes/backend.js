@@ -13,18 +13,26 @@ var connection = mysql.createConnection({
   database: db.database
 })
 
+var result = [];
+
+
 connection.connect(function(err) {
   if (err) throw err
   console.log('You are now connected to the MySQL Database.')
 })
 
-connection.query('SELECT * from User;', function(err, rows, fields) {
-  if (!err)
-    console.log('The solution is: ', rows);
+connection.query("SELECT User_ID, Username from User;", function(err, rows, fields) {
+  if (!err) {
+    result = rows;
+    for (var i = 0; i < result.length; i++) {
+      console.log(result[i]);
+      console.log(result[i].User_ID);
+      console.log(result[i].Username);
+    }
+  }
   else
     console.log('Error while performing Query.');
 });
-
 
 
 /* GET users listing. */
