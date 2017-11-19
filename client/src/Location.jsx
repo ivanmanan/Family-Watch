@@ -3,17 +3,27 @@ import {geolocated} from 'react-geolocated';
 
 class Location extends Component {
 
-
   // Send GPS coordinates to server
-  handleLocation() {
+  // Need to setup timer to trigger this function or make
+  // this function into a for-loop -- this must run in parallel
+  // with the rest of the web application
+  handleLocation(e) {
+    var longlat = this;
+    // Send POST request with the data to the server
+    // Currently broken
+    fetch('/coordinates', {
+      method: 'POST',
+      data: {
+        longitude: longlat.props.coords.longitude,
+        latitude: longlat.props.coords.latitude
+      }
+      })
+      .then(function(response) {
+        return response.json()
+      }).then(function(body) {
+        console.log(body);
+      });
 
-
-
-
-
-    // Need to setup timer to trigger this function or make
-    // this function into a for-loop -- this must run in parallel
-    // with the rest of the web application
     const coordinates = (
       <div>
         <h2>

@@ -34,7 +34,16 @@ var port = process.env.PORT || 3001;
 
 var backend = require('./routes/backend');
 app.use('/backend', backend);
+app.use('/coordinates', backend);
+// app.post('/coordinates', function(req,res) {
 
+//   console.log("Running query...");
+
+//   var longitude = req.longitude;
+//   var latitude = req.latitude;
+
+//   console.log(longitude);
+// });
 
 ////////////////////////////////////////////////////////////////////////
 // Start Application

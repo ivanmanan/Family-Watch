@@ -58,6 +58,8 @@ console.log("GPS Testing");
 
 router.post('/coordinates', function(req,res) {
 
+  console.log("Running query...");
+
   var longitude = req.longitude;
   var latitude = req.latitude;
 
