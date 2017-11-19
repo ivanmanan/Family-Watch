@@ -39,19 +39,19 @@ var port = process.env.PORT || 3001;
 ////////////////////////////////////////////////////////////////////////
 // MySQL Database
 
-//Define MySQL parameter in Config.js file.
+// Define MySQL parameter in Config.js file.
+db = config.database;
 var connection = mysql.createConnection({
-  host     : config.host,
-  user     : config.username,
-  password : config.password,
-  database : config.database
+  host     : db.host,
+  user     : db.user,
+  password : db.password,
+  database : db.database
 });
-//Connect to Database only if Config.js parameter is set.
-if(config.use_database==='true') {
-  connection.connect();
-}
 
-
+connection.connect(function(err) {
+  if (err) throw err
+  console.log('You are now connected to the MySQL Database.')
+})
 
 
 
@@ -91,21 +91,27 @@ app.get('/backend', function(req, res, next) {
 console.log("===================================================");
 console.log("GPS Testing");
 
-app.post('/coordinates', function(req,res) {
-  console.log(req);
+app.post('/coordinates', (req,res) => {
+
   console.log("Running query...");
-  var data = req.body;
-  var longitude = req.body.longitude;
-  var latitude = req.body.latitude;
-  console.log(req.body);
+
+  const param = req.body;
+  const longitude = req.body.longitude;
+  const latitude = req.body.latitude;
+  console.log("Longitude: " + longitude);
+  console.log("Latitude: " + latitude);
+
+  // var data = req.body;
+  // var longitude = req.body.longitude;
+  // var latitude = req.body.latitude;
+  // console.log(req.body);
   // The '1' number will be replaced with the respective user id's
 
-/*
+
   connection.query('INSERT INTO GPS (hid, Longitude, Latitude) VALUES ("'
                    + 1 + '", "' + longitude + '", "' + latitude + '");');
 
   res.end("Success!");
-*/
 });
 
 

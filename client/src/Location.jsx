@@ -11,21 +11,22 @@ class Location extends Component {
   // Need to setup timer to trigger this function or make
   // this function into a for-loop -- this must run in parallel
   // with the rest of the web application
-  handleLocation(e) {
+  handleLocation() {
     // Send POST request with the data to the server
     // Currently broken
     console.log(this.props.coords);
     fetch('/coordinates', {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
       method: 'POST',
-      data: {
+      body: JSON.stringify({
         longitude: this.props.coords.longitude,
         latitude: this.props.coords.latitude
-      },
-      headers: new Headers()
+      })
     })
-      .then(function(response) {
-        return response.json()
-      }).then(function(body) {
+      .then(function(body) {
         console.log(body);
       });
 
