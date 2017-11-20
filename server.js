@@ -96,10 +96,11 @@ app.post('/coordinates', (req,res) => {
   console.log("Running query...");
 
   const param = req.body;
+  console.log("Inserting into database:")
   const longitude = req.body.longitude;
   const latitude = req.body.latitude;
   console.log("Longitude: " + longitude);
-  console.log("Latitude: " + latitude);
+  console.log("Latitude: " + latitude + "\n");
 
   // var data = req.body;
   // var longitude = req.body.longitude;

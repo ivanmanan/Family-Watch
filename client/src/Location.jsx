@@ -1,20 +1,46 @@
 import React, { Component } from 'react';
-import {geolocated} from 'react-geolocated';
+
+//const ONE_HOUR = 1000 * 60 * 60;
+const TIME = 6000;
 
 class Location extends Component {
-  constructor() {
-    super();
-    this.state = { coordinates: {} };
+  constructor(props) {
+    super(props);
+    this.state = {
+      longitude: 0,
+      latitude: 0
+    };
   }
 
-  // Send GPS coordinates to server
-  // Need to setup timer to trigger this function or make
-  // this function into a for-loop -- this must run in parallel
-  // with the rest of the web application
-  handleLocation() {
-    // Send POST request with the data to the server
-    // Currently broken
-    console.log(this.props.coords);
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.getLocation(),
+      TIME
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  // Updates GPS state
+  getLocation() {
+
+    // Need to specify high accuracy is off
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        this.setState({
+          longitude: position.coords.longitude,
+          latitude: position.coords.latitude
+        });
+      },
+      error => console.log(error)
+    );
+    this.postLocation();
+  }
+
+  // Send POST request with the data to the server
+  postLocation() {
     fetch('/coordinates', {
       headers: {
         'Accept': 'application/json',
@@ -22,40 +48,29 @@ class Location extends Component {
       },
       method: 'POST',
       body: JSON.stringify({
-        longitude: this.props.coords.longitude,
-        latitude: this.props.coords.latitude
+        longitude: this.state.longitude,
+        latitude: this.state.latitude
       })
     })
       .then(function(body) {
         console.log(body);
       });
+  }
 
+
+  render() {
     const coordinates = (
       <div>
         <h2>
-          My latitude is: {this.props.coords.latitude}
+          My latitude is: {this.state.latitude}
         </h2>
         <h2>
-          My longitude is: {this.props.coords.longitude}
+          My longitude is: {this.state.longitude}
         </h2>
       </div>
     );
     return coordinates;
   }
-  render() {
-    return !this.props.isGeolocationAvailable
-         ? <div>Your browser does not support Geolocation</div>
-         : !this.props.isGeolocationEnabled
-         ? <div>Geolocation is not enabled</div>
-         : this.props.coords
-         ? this.handleLocation()
-         : <div>Getting the location data&hellip; </div>;
-  }
 }
 
-export default geolocated({
-  positionOptions: {
-    enableHighAccuracy: false,
-  },
-  userDecisionTimeout: 5000,
-})(Location);
+export default Location;
