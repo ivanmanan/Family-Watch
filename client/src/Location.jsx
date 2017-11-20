@@ -26,6 +26,7 @@ class Location extends Component {
   // Updates GPS state
   getLocation() {
 
+    console.log("Retrieving location...");
     // Need to specify high accuracy is off
     navigator.geolocation.getCurrentPosition(
       position => {

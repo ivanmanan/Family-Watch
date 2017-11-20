@@ -96,11 +96,19 @@ app.post('/coordinates', (req,res) => {
   console.log("Running query...");
 
   const param = req.body;
-  console.log("Inserting into database:")
-  const longitude = req.body.longitude;
-  const latitude = req.body.latitude;
-  console.log("Longitude: " + longitude);
-  console.log("Latitude: " + latitude + "\n");
+  const longitude = param.longitude;
+  const latitude = param.latitude;
+
+  if (longitude === 0 && latitude === 0) {
+    console.log("Setting up GPS...\n")
+  }
+  else {
+    console.log("Inserting into database:")
+    console.log("Longitude: " + longitude);
+    console.log("Latitude: " + latitude + "\n");
+    connection.query('INSERT INTO GPS (hid, Longitude, Latitude) VALUES ("'
+                     + 1 + '", "' + longitude + '", "' + latitude + '");');
+  }
 
   // var data = req.body;
   // var longitude = req.body.longitude;
@@ -109,8 +117,6 @@ app.post('/coordinates', (req,res) => {
   // The '1' number will be replaced with the respective user id's
 
 
-  connection.query('INSERT INTO GPS (hid, Longitude, Latitude) VALUES ("'
-                   + 1 + '", "' + longitude + '", "' + latitude + '");');
 
   res.end("Success!");
 });
