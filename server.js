@@ -99,6 +99,9 @@ app.post('/coordinates', (req,res) => {
   const longitude = param.longitude;
   const latitude = param.latitude;
 
+  // todo:
+  // Need to replace query with '1' to respective user ID
+
   if (longitude === 0 && latitude === 0) {
     console.log("Setting up GPS...\n")
   }
@@ -109,14 +112,6 @@ app.post('/coordinates', (req,res) => {
     connection.query('INSERT INTO GPS (hid, Longitude, Latitude) VALUES ("'
                      + 1 + '", "' + longitude + '", "' + latitude + '");');
   }
-
-  // var data = req.body;
-  // var longitude = req.body.longitude;
-  // var latitude = req.body.latitude;
-  // console.log(req.body);
-  // The '1' number will be replaced with the respective user id's
-
-
 
   res.end("Success!");
 });
