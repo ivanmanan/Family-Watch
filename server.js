@@ -47,8 +47,7 @@ var connection = mysql.createConnection({
   database : config.database
 });
 //Connect to Database only if Config.js parameter is set.
-if(config.use_database==='true')
-{
+if(config.use_database==='true') {
   connection.connect();
 }
 
@@ -123,11 +122,10 @@ if(config.use_database==='true')
 
 
 
-
 ////////////////////////////////////////////////////////////////////////
 // Post Requests
 
-
+/*
 app.get('/backend', function(req, res, next) {
   res.json([
     {
@@ -147,7 +145,7 @@ app.get('/backend', function(req, res, next) {
     }
   ]);
 });
-
+*/
 
 
 console.log("===================================================");
@@ -156,7 +154,7 @@ console.log("GPS Testing");
 app.post('/coordinates', function(req,res) {
 
   console.log("Running query...");
-
+/*
   var longitude = req.longitude;
   var latitude = req.latitude;
 
@@ -164,7 +162,7 @@ app.post('/coordinates', function(req,res) {
                    + 1 + '", "' + longitude + '", "' + latitude + '");');
 
   res.end("Success!");
-
+*/
 });
 
 
