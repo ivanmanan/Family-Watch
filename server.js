@@ -138,8 +138,11 @@ https.createServer(httpsOptions, app)
     console.log('Server running on port ' + port + ' via HTTPS...');
   })
 
+// Note: In order for HTTPS to run, you must disable security on google chrome:
+// $ chromium-browser --disable-web-security --user-data-dir
+// On https://localhost:3000, click on 'Advanced' to override the
+// "Connection is not private"
 
 //app.listen(port);
-console.log('Server running on port 3001...');
 
 module.exports = app;
