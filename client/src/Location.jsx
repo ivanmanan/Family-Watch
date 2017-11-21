@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 //const ONE_HOUR = 1000 * 60 * 60;
-const TIME = 6000 * 4;
+const TIME = 4000;
 
 class Location extends Component {
   constructor(props) {

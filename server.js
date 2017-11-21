@@ -14,6 +14,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
 const io = require('socket.io')(); // Socket
+const fs = require('fs');
+const https = require('https');
+const path = require('path');
 
 ////////////////////////////////////////////////////////////////////////
 // Configurations
@@ -34,6 +37,12 @@ app.use(cookieParser());
 
 // Set port
 var port = process.env.PORT || 3001;
+
+// Set to HTTPS for GPS sharing
+const httpsOptions = {
+  cert: fs.readFileSync(path.join(__dirname, 'ssl', 'police.crt')),
+  key: fs.readFileSync(path.join(__dirname, 'ssl', 'police.key'))
+}
 
 
 ////////////////////////////////////////////////////////////////////////
@@ -88,9 +97,6 @@ app.get('/backend', function(req, res, next) {
 */
 
 
-console.log("===================================================");
-console.log("GPS Testing");
-
 app.post('/coordinates', (req,res) => {
 
   console.log("Running query...");
@@ -125,7 +131,15 @@ app.post('/coordinates', (req,res) => {
 
 // Server at localhost:3001
 // React client running at localhost:3000
-app.listen(port);
+
+// Switch to HTTPS
+https.createServer(httpsOptions, app)
+  .listen(port, function() {
+    console.log('Server running on port ' + port + ' via HTTPS...');
+  })
+
+
+//app.listen(port);
 console.log('Server running on port 3001...');
 
 module.exports = app;
