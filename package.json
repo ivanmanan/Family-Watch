@@ -28,6 +28,7 @@
     "cookie-parser": "^1.4.3",
     "ejs": "^2.5.7",
     "express": "^4.15.4",
+    "google-maps-react": "^1.1.2",
     "morgan": "^1.8.2",
     "mysql": "^2.15.0",
     "mysql-server": "^1.0.5",
