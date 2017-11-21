@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Location from './Location';
 
 // Display username logged in and
 // his or her account status
@@ -10,9 +11,9 @@ class Profile extends Component {
   render() {
     return (
       <div className="Profile text-center">
-        <h1>Ivan</h1>
+        <h1>Username</h1>
         <img id="eye-logo" src="/images/sauron.png" alt="Police-Watch"/>
-        <h2>Host</h2>
+        <Location/>
       </div>
     );
   }

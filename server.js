@@ -74,8 +74,7 @@ connection.connect(function(err) {
 ////////////////////////////////////////////////////////////////////////
 // Post Requests
 
-/*
-app.get('/backend', function(req, res, next) {
+app.get('/users', function(req, res, next) {
   res.json([
     {
   	  id: 1,
@@ -93,8 +92,14 @@ app.get('/backend', function(req, res, next) {
       name: "yb"
     }
   ]);
+})
+
+app.get('/history', function(req, res, next) {
+
+
+
+
 });
-*/
 
 
 app.post('/coordinates', (req,res) => {
