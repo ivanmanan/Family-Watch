@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
+<<<<<<< HEAD
+class Maps extends Component {
+
+  render() {
+    return (
+      <div>
+        <h1>Testing Maps</h1>
+
+      </div>
+=======
 // class Maps extends Component {
 //   render() {
 //     return (
@@ -23,6 +33,7 @@ export class Maps extends React.Component {
             name={'Current location'} />
         </Map>
       // </div>
+>>>>>>> lew
     );
   }
 }
