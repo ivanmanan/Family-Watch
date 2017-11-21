@@ -15,14 +15,12 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 export class Maps extends React.Component {
   render() {
     return (
-      // <div className="Maps">
-      //   <h1>Render Maps here.</h1>
-      //   <h3>Google API key: AIzaSyBwu92u8xtE-MLIYMA0gP30EOms2FSnWkg</h3>
+      <div className="Maps">
         <Map google={this.props.google} zoom={14}>
           <Marker onClick={this.onMarkerClick}
-            name={'Current location'} />
+                  name={'Current location'} />
         </Map>
-      // </div>
+      </div>
     );
   }
 }

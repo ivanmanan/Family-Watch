@@ -55,10 +55,11 @@ body {
 
 /* Maps Block */
 .Maps-block {
-
+    margin-left: -1.1%;
 }
 .Maps {
-
+    padding-bottom: 80%;
+    padding-right: -30%;
 }
 
 

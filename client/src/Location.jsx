@@ -31,8 +31,8 @@ class Location extends Component {
     navigator.geolocation.getCurrentPosition(
       position => {
         this.setState({
-          longitude: position.coords.longitude,
-          latitude: position.coords.latitude
+          longitude: (position.coords.longitude).toFixed(6),
+          latitude: (position.coords.latitude).toFixed(6)
         });
       },
       error => console.log(error)
