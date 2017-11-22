@@ -118,21 +118,18 @@ app.post('/history', (req, res) => {
       // Replace user with actual person getting queried
       console.log("Retrieving GPS history\n");
 
-      // Testing
-      console.log(result);
+      var history = [];
+      for (var i = 0; i < result.length; i++) {
+        history.push({
+          id: user_id,
+          time: result[i].Time_record,
+          longitude: result[i].Longitude,
+          Latitude: result[i].Latitude
+        })
+      }
 
-      // This must be a for-loop for transmitting json object
-      // of GPS time + coordinates
-      // PROBLEM: if the query returned an empty set, this will produce
-      // segmentation faults
-      res.json([
-        {
-          id: 1,
-          time: result[0].Time_record,
-          longitude: result[0].Longitude,
-          Latitude: result[0].Latitude
-        }
-      ]);
+      res.contentType('application/json');
+      res.send(JSON.stringify(history));
     }
   });
 });

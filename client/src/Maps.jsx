@@ -12,7 +12,7 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 //   }
 // }
 
-export class Maps extends React.Component {
+export class Maps extends Component {
   render() {
     return (
       <div className="Maps">
