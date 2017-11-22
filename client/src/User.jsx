@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 const FIVE_MINUTES = 1000 * 60 * 5;
-const TIME = FIVE_MINUTES;
+const TIME = 6000;
 
 // When checkbox is checked, submit a GET request
 // To retrieve GPS history of that user
@@ -10,7 +10,8 @@ class History extends Component {
     super(props);
     this.state = {
       checked: true,
-      userID: this.props.userID
+      userID: this.props.userID,
+      history: []
     };
 
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
@@ -36,10 +37,25 @@ class History extends Component {
     });
   }
 
-  // I want to set this on a timer to check if
+  // Retrieve GPS history of that
+  // this will not work until I can send user_id to the history
   getHistory() {
-    if (this.state.checked) {
-      console.log("Retrieving location history...");
+    if (!this.state.checked) {
+
+      fetch('/history', {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({
+          user_id: this.state.userID,
+        })
+      })
+        .then(res => res.json())
+        .then(history => this.setState({ history }));
+
+      console.log(this.state.history);
     }
   }
 

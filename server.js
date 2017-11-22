@@ -103,30 +103,34 @@ app.get('/users', (req, res, next) => {
   });
 })
 
-app.get('/history', (req, res, next) => {
+app.post('/history', (req, res) => {
 
   // Retrieve GPS history from this user
-  const user = req.body.user;
   const user_id = req.body.user_id;
 
   connection.query('SELECT * from GPS where hid=' + user_id + ';', (err, result, fields) => {
-    if (err) throw err;
+    if (err) {
+      console.log("GPS history retrieval failed.");
+      throw err;
+    }
     else {
       console.log("Running query...");
       // Replace user with actual person getting queried
-      console.log("Retrieving GPS history from " + user + ".\n");
+      console.log("Retrieving GPS history\n");
 
       // Testing
       console.log(result);
 
       // This must be a for-loop for transmitting json object
       // of GPS time + coordinates
+      // PROBLEM: if the query returned an empty set, this will produce
+      // segmentation faults
       res.json([
         {
           id: 1,
           time: result[0].Time_record,
           longitude: result[0].Longitude,
-          Latitude: reuslt[0].Latitude
+          Latitude: result[0].Latitude
         }
       ]);
     }
