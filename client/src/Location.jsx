@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-//const ONE_HOUR = 1000 * 60 * 60;
-const TIME = 4000;
+const FIVE_MINUTES = 1000 * 60 * 5;
+const TIME = FIVE_MINUTES;
 
 class Location extends Component {
   constructor(props) {
@@ -61,12 +61,12 @@ class Location extends Component {
 
   render() {
     const coordinates = (
-      <div>
+      <div className="text-center">
         <h2>
-          My latitude is: {this.state.latitude}
+          My latitude:<br/>{this.state.latitude}
         </h2>
         <h2>
-          My longitude is: {this.state.longitude}
+          My longitude:<br/>{this.state.longitude}
         </h2>
       </div>
     );

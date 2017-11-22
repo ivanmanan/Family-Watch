@@ -72,37 +72,69 @@ connection.connect(function(err) {
 
 
 ////////////////////////////////////////////////////////////////////////
-// Post Requests
+// HTTP Methods
 
-app.get('/users', function(req, res, next) {
-  res.json([
-    {
-  	  id: 1,
-  	  name: "ivan"
-    }, {
-  	  id: 2,
-  	  name: "lewis"
-    },
-    {
-      id: 3,
-      name: "brian"
-    },
-    {
-      id: 4,
-      name: "yb"
+app.get('/users', (req, res, next) => {
+
+  connection.query('SELECT * FROM User', (err, result, fields) => {
+    if (err) throw err;
+    else {
+      console.log("Running query...");
+      console.log("Retrieving list of users.\n");
+
+      res.json([
+        {
+  	      id: result[0].User_ID,
+  	      name: result[0].Username
+        }, {
+  	      id: result[1].User_ID,
+  	      name: result[1].Username
+        },
+        {
+          id: result[2].User_ID,
+          name: result[2].Username
+        },
+        {
+          id: result[3].User_ID,
+          name: result[3].Username
+        }
+      ]);
     }
-  ]);
+  });
 })
 
-app.get('/history', function(req, res, next) {
+app.get('/history', (req, res, next) => {
 
+  // Retrieve GPS history from this user
+  const user = req.body.user;
+  const user_id = req.body.user_id;
 
+  connection.query('SELECT * from GPS where hid=' + user_id + ';', (err, result, fields) => {
+    if (err) throw err;
+    else {
+      console.log("Running query...");
+      // Replace user with actual person getting queried
+      console.log("Retrieving GPS history from " + user + ".\n");
 
+      // Testing
+      console.log(result);
 
+      // This must be a for-loop for transmitting json object
+      // of GPS time + coordinates
+      res.json([
+        {
+          id: 1,
+          time: result[0].Time_record,
+          longitude: result[0].Longitude,
+          Latitude: reuslt[0].Latitude
+        }
+      ]);
+    }
+  });
 });
 
 
-app.post('/coordinates', (req,res) => {
+app.post('/coordinates', (req, res) => {
 
   console.log("Running query...");
 
