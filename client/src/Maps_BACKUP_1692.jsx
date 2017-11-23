@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
+<<<<<<< HEAD
+class Maps extends Component {
+
+  render() {
+    return (
+      <div>
+        <h1>Testing Maps</h1>
+
+      </div>
+=======
 // class Maps extends Component {
 //   render() {
 //     return (
@@ -12,15 +22,18 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 //   }
 // }
 
-export class Maps extends Component {
+export class Maps extends React.Component {
   render() {
     return (
-      <div className="Maps">
+      // <div className="Maps">
+      //   <h1>Render Maps here.</h1>
+      //   <h3>Google API key: AIzaSyBwu92u8xtE-MLIYMA0gP30EOms2FSnWkg</h3>
         <Map google={this.props.google} zoom={14}>
           <Marker onClick={this.onMarkerClick}
-                  name={'Current location'} />
+            name={'Current location'} />
         </Map>
-      </div>
+      // </div>
+>>>>>>> lew
     );
   }
 }

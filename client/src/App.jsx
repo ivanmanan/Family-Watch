@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-/* import Sample from './Sample';*/
+
 import Maps from './Maps';
 import Panel from './Panel';
 import Profile from './Profile';
-import Location from './Location';
 
 class App extends Component {
 
@@ -13,7 +12,7 @@ class App extends Component {
 
         <nav className="navbar navbar-inverse navbar-static-top">
           <div className="navbar-header">
-	          <h1 className="navbar-brand" id="heading">Police Watch</h1>
+	          <h1 className="navbar-brand" id="heading">Family Watch</h1>
 	        </div>
         </nav>
 
@@ -30,9 +29,7 @@ class App extends Component {
             col-md-7
             col-sm-6
             col-xs-6">
-            {/* <Sample/> */}
             <Maps/>
-            <Location/>
           </div>
 
           <div className="Panel-block

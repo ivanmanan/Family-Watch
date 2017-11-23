@@ -14,6 +14,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
 const io = require('socket.io')(); // Socket
+const fs = require('fs');
+const https = require('https');
+const path = require('path');
 
 ////////////////////////////////////////////////////////////////////////
 // Configurations
@@ -35,83 +38,29 @@ app.use(cookieParser());
 // Set port
 var port = process.env.PORT || 3001;
 
+// Set to HTTPS for GPS sharing
+const httpsOptions = {
+  cert: fs.readFileSync(path.join(__dirname, 'ssl', 'police.crt')),
+  key: fs.readFileSync(path.join(__dirname, 'ssl', 'police.key'))
+}
+
 
 ////////////////////////////////////////////////////////////////////////
 // MySQL Database
 
-//Define MySQL parameter in Config.js file.
+// Define MySQL parameter in Config.js file.
+db = config.database;
 var connection = mysql.createConnection({
-  host     : config.host,
-  user     : config.username,
-  password : config.password,
-  database : config.database
+  host     : db.host,
+  user     : db.user,
+  password : db.password,
+  database : db.database
 });
-//Connect to Database only if Config.js parameter is set.
-if(config.use_database==='true') {
-  connection.connect();
-}
 
-////////////////////////////////////////////////////////////////////////
-// Passport
-
-
-// ----------------- facebook login stuff --------------------
-// // Passport session setup.
-// passport.serializeUser(function(user, done) {
-//   done(null, user);
-// });
-// passport.deserializeUser(function(obj, done) {
-//   done(null, obj);
-// });
-// // Use the FacebookStrategy within Passport.
-// passport.use(new FacebookStrategy({
-//   clientID: config.facebook_api_key,
-//   clientSecret:config.facebook_api_secret ,
-//       callbackURL: config.callback_url
-//     },
-//     function(accessToken, refreshToken, profile, done) {
-//       process.nextTick(function () {
-//         //Check whether the User exists or not using profile.id
-//         //Further DB code.
-//         return done(null, profile);
-//       });
-//     }
-//   ));
-//   app.set('views', __dirname + '/views');
-//   app.set('view engine', 'ejs');
-//   app.use(cookieParser());
-//   app.use(bodyParser.urlencoded({ extended: false }));
-//   app.use(session({ secret: 'keyboard cat',  resave: true, saveUninitialized: true, key: 'sid'}));
-//   app.use(passport.initialize());
-//   app.use(passport.session());
-//   app.use(express.static(__dirname + '/public'));
-//   //Router code
-//   app.get('/', function(req, res){
-//     res.render('index', { user: req.user });
-//   });
-//   app.get('/account', ensureAuthenticated, function(req, res){
-//     res.render('account', { user: req.user });
-//   });
-//   //Passport Router
-//   app.get('/auth/facebook', passport.authenticate('facebook'));
-//   app.get('/auth/facebook/callback',
-//     passport.authenticate('facebook', {
-//          successRedirect : '/',
-//          failureRedirect: '/login'
-//     }),
-//     function(req, res) {
-//       res.redirect('/');
-//     });
-//   app.get('/logout', function(req, res){
-//     req.logout();
-//     res.redirect('/');
-//   });
-//   function ensureAuthenticated(req, res, next) {
-//     if (req.isAuthenticated()) { return next(); }
-//     res.redirect('/login')
-//   }
-  //app.listen(3000);
-
+connection.connect(function(err) {
+  if (err) throw err
+  console.log('You are now connected to the MySQL Database.')
+})
 
 
 
@@ -123,46 +72,92 @@ if(config.use_database==='true') {
 
 
 ////////////////////////////////////////////////////////////////////////
-// Post Requests
+// HTTP Methods
 
-/*
-app.get('/backend', function(req, res, next) {
-  res.json([
-    {
-  	  id: 1,
-  	  name: "ivan"
-    }, {
-  	  id: 2,
-  	  name: "lewis"
-    },
-    {
-      id: 3,
-      name: "brian"
-    },
-    {
-      id: 4,
-      name: "yb"
+app.get('/users', (req, res, next) => {
+
+  connection.query('SELECT * FROM User', (err, result, fields) => {
+    if (err) throw err;
+    else {
+      console.log("Running query...");
+      console.log("Retrieving list of users.\n");
+
+      res.json([
+        {
+  	      id: result[0].User_ID,
+  	      name: result[0].Username
+        }, {
+  	      id: result[1].User_ID,
+  	      name: result[1].Username
+        },
+        {
+          id: result[2].User_ID,
+          name: result[2].Username
+        },
+        {
+          id: result[3].User_ID,
+          name: result[3].Username
+        }
+      ]);
     }
-  ]);
+  });
+})
+
+app.post('/history', (req, res) => {
+
+  // Retrieve GPS history from this user
+  const user_id = req.body.user_id;
+
+  connection.query('SELECT * from GPS where hid=' + user_id + ';', (err, result, fields) => {
+    if (err) {
+      console.log("GPS history retrieval failed.");
+      throw err;
+    }
+    else {
+      console.log("Running query...");
+      // Replace user with actual person getting queried
+      console.log("Retrieving GPS history\n");
+
+      var history = [];
+      for (var i = 0; i < result.length; i++) {
+        history.push({
+          id: user_id,
+          time: result[i].Time_record,
+          longitude: result[i].Longitude,
+          Latitude: result[i].Latitude
+        })
+      }
+
+      res.contentType('application/json');
+      res.send(JSON.stringify(history));
+    }
+  });
 });
-*/
 
 
-console.log("===================================================");
-console.log("GPS Testing");
-
-app.post('/coordinates', function(req,res) {
+app.post('/coordinates', (req, res) => {
 
   console.log("Running query...");
-/*
-  var longitude = req.longitude;
-  var latitude = req.latitude;
 
-  connection.query('INSERT INTO GPS (hid, Longitude, Latitude) VALUES ("'
-                   + 1 + '", "' + longitude + '", "' + latitude + '");');
+  const param = req.body;
+  const longitude = param.longitude;
+  const latitude = param.latitude;
+
+  // todo:
+  // Need to replace query with '1' to respective user ID
+
+  if (longitude === 0 && latitude === 0) {
+    console.log("Setting up GPS...\n")
+  }
+  else {
+    console.log("Inserting into database:")
+    console.log("Longitude: " + longitude);
+    console.log("Latitude: " + latitude + "\n");
+    connection.query('INSERT INTO GPS (hid, Longitude, Latitude) VALUES ("'
+                     + 1 + '", "' + longitude + '", "' + latitude + '");');
+  }
 
   res.end("Success!");
-*/
 });
 
 
@@ -174,7 +169,18 @@ app.post('/coordinates', function(req,res) {
 
 // Server at localhost:3001
 // React client running at localhost:3000
-app.listen(port);
-console.log('Server running on port 3001...');
+
+// Switch to HTTPS
+https.createServer(httpsOptions, app)
+  .listen(port, function() {
+    console.log('Server running on port ' + port + ' via HTTPS...');
+  })
+
+// Note: In order for HTTPS to run, you must disable security on google chrome:
+// $ chromium-browser --disable-web-security --user-data-dir
+// On https://localhost:3000, click on 'Advanced' to override the
+// "Connection is not private"
+
+//app.listen(port);
 
 module.exports = app;
