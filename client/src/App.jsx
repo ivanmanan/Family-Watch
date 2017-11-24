@@ -11,20 +11,53 @@ class App extends Component {
     super(props);
     this.state = {
       history: []
-    }
+    };
+    this.appendHistory = this.appendHistory.bind(this);
   }
 
   // Append existing history with newest addition
   // Callback function App.jsx --> Panel.jsx --> User.jsx
-  appendHistory(userID, addition) {
-    console.log("Working on appending");
-    console.log("User ID: " + userID);
+  appendHistory(addition) {
+    console.log("Working on appending history.");
+    console.log("User ID: " + addition[0].id);
     console.log(addition[0].time);
     console.log(addition[0].longitude);
     console.log(addition);
+
+    const user_ID = addition[0].id;
+    var temp = [];
+
+    // Check if this.state.history is undefined
+    if (typeof this.state.history[0] === 'undefined')
+      console.log("Initializing history.");
+    else
+      var temp = this.state.history;
+
+    for (var i = 0; i < addition.length; i++) {
+      temp.push({
+        id: user_ID,
+        time: addition[0].time,
+        longitude: addition[0].longitude,
+        latitude: addition[0].latitude
+      })
+    }
+
+    this.setState({
+      history: temp
+    });
+
+    // Changed history state
+    console.log(this.state.history);
+
+    // Problem:
+    // I need to clear history after a certain interval
+    // I know User.jsx will be calling this parent function 4 times consecutively
+    // Therefore, I can make global variables on TIME
+    // and Intermediately I will clear the history variable
+    // So I need to mount a timer on when to clear the history variable
+
+    // todo: sort the array by time at Maps.jsx file
   }
-  // We want to pass down the state history prop to Maps.jsx
-  // In order to retrieve all GPS coordinates
 
   render() {
     return (

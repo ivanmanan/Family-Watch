@@ -10,8 +10,8 @@ class History extends Component {
     super(props);
     this.state = {
       checked: true,
-      userID: this.props.userID//,
-      //history: []
+      userID: this.props.userID,
+      history: []
     };
 
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
@@ -55,17 +55,11 @@ class History extends Component {
         .then(res => res.json())
         .then(history => this.setState({ history }));
 
-      // Check if undefined history first
-      if (typeof this.state.history === 'undefined') {
-        console.log("Undefined history.");
-      }
-      else if (typeof this.state.history[0] === 'undefined') {
-        console.log("Undefined history.")
+      if (typeof this.state.history[0] === 'undefined') {
+        console.log("Undefined history in User.jsx")
       }
       else { // Pass history to parent component
-        // I may want to generate a new array for easier placeholder
-
-        this.props.appendHistory(this.state.userID, this.state.history);
+        this.props.appendHistory(this.state.history);
       }
     }
   }
