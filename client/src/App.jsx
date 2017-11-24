@@ -4,6 +4,9 @@ import Maps from './Maps';
 import Panel from './Panel';
 import Profile from './Profile';
 
+// Global variable
+var userCount = 0;
+
 class App extends Component {
 
   // Constructor to pass down History prop between Maps.jsx and Panel.jsx
@@ -17,46 +20,53 @@ class App extends Component {
 
   // Append existing history with newest addition
   // Callback function App.jsx --> Panel.jsx --> User.jsx
-  appendHistory(addition) {
-    console.log("Working on appending history.");
-    console.log("User ID: " + addition[0].id);
-    console.log(addition[0].time);
-    console.log(addition[0].longitude);
-    console.log(addition);
+  appendHistory(addition, userFlag) {
 
-    const user_ID = addition[0].id;
-    var temp = [];
-
-    // Check if this.state.history is undefined
-    if (typeof this.state.history[0] === 'undefined')
-      console.log("Initializing history.");
-    else
-      var temp = this.state.history;
-
-    for (var i = 0; i < addition.length; i++) {
-      temp.push({
-        id: user_ID,
-        time: addition[0].time,
-        longitude: addition[0].longitude,
-        latitude: addition[0].latitude
-      })
+    // If function has been run four times consecutively,
+    // then clear history
+    if (userCount % 4 === 0) {
+      this.setState({
+        history: []
+      });
     }
 
-    this.setState({
-      history: temp
-    });
+    userCount++;
 
-    // Changed history state
-    console.log(this.state.history);
+    // Check userFlag -- if it's false, then user checkbox was not checked
+    if (userFlag) {
+      const user_ID = addition[0].id;
+      var temp = [];
 
-    // Problem:
-    // I need to clear history after a certain interval
-    // I know User.jsx will be calling this parent function 4 times consecutively
-    // Therefore, I can make global variables on TIME
-    // and Intermediately I will clear the history variable
-    // So I need to mount a timer on when to clear the history variable
+      // Check if this.state.history is undefined
+      if (typeof this.state.history[0] === 'undefined')
+        console.log("Initializing history.");
+      else
+        var temp = this.state.history;
 
-    // todo: sort the array by time at Maps.jsx file
+      for (var i = 0; i < addition.length; i++) {
+        temp.push({
+          id: user_ID,
+          time: addition[0].time,
+          longitude: addition[0].longitude,
+          latitude: addition[0].latitude
+        })
+      }
+
+      this.setState({
+        history: temp
+      });
+
+      // Changed history state -- send this to Maps.jsx
+      //console.log(this.state.history);
+
+      /* console.log("Working on appending history.");
+       * console.log("User ID: " + addition[0].id);
+       * console.log(addition[0].time);
+       * console.log(addition[0].longitude);
+       * console.log(addition);*/
+
+      // todo: sort the array by time at Maps.jsx file
+    }
   }
 
   render() {

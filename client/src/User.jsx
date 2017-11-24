@@ -20,7 +20,7 @@ class History extends Component {
   componentDidMount() {
     this.timerID = setInterval(
       () => this.queryHistory(),
-      6000//TIME
+      TIME
     );
   }
 
@@ -57,11 +57,14 @@ class History extends Component {
 
       if (typeof this.state.history[0] === 'undefined') {
         console.log("Undefined history in User.jsx")
+        this.props.appendHistory([], false);
       }
       else { // Pass history to parent component
-        this.props.appendHistory(this.state.history);
+        this.props.appendHistory(this.state.history, true);
       }
     }
+    else
+      this.props.appendHistory([], false);
   }
 
 
