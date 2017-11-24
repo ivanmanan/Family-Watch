@@ -10,8 +10,8 @@ class History extends Component {
     super(props);
     this.state = {
       checked: true,
-      userID: this.props.userID,
-      history: []
+      userID: this.props.userID//,
+      //history: []
     };
 
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
@@ -19,8 +19,8 @@ class History extends Component {
 
   componentDidMount() {
     this.timerID = setInterval(
-      () => this.getHistory(),
-      TIME
+      () => this.queryHistory(),
+      6000//TIME
     );
   }
 
@@ -37,9 +37,9 @@ class History extends Component {
     });
   }
 
-  // Retrieve GPS history of that
+  // Retrieve GPS history of a user
   // this will not work until I can send user_id to the history
-  getHistory() {
+  queryHistory() {
     if (this.state.checked) {
 
       fetch('/history', {
@@ -55,15 +55,18 @@ class History extends Component {
         .then(res => res.json())
         .then(history => this.setState({ history }));
 
-      // This is the variable I want to export to Map that
-      // will always be updated -- need to change timer to five minutes
-      console.log(this.state.history);
-
       // Check if undefined history first
-      /* if (typeof this.state.history[0] !== 'undefined') {
-       *   console.log(this.state.history[0].time);
-       *   console.log(this.state.history[0].longitude);
-       * }*/
+      if (typeof this.state.history === 'undefined') {
+        console.log("Undefined history.");
+      }
+      else if (typeof this.state.history[0] === 'undefined') {
+        console.log("Undefined history.")
+      }
+      else { // Pass history to parent component
+        // I may want to generate a new array for easier placeholder
+
+        this.props.appendHistory(this.state.userID, this.state.history);
+      }
     }
   }
 
