@@ -124,7 +124,7 @@ app.post('/history', (req, res) => {
           id: user_id,
           time: result[i].Time_record,
           longitude: result[i].Longitude,
-          Latitude: result[i].Latitude
+          latitude: result[i].Latitude
         })
       }
 

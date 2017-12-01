@@ -24,7 +24,7 @@ class Panel extends Component {
         <h1>Users</h1>
         <img id="settings-logo" src="/images/settings.png" alt="Settings"/>
         {this.state.users.map(user =>
-          <User className="row" key={user.id} username={user.name} userID={user.id}/>
+          <User className="row" key={user.id} username={user.name} userID={user.id} appendHistory={this.props.appendHistory}/>
         )}
       </div>
     );
