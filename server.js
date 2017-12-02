@@ -62,23 +62,25 @@ connection.connect(function(err) {
   console.log('You are now connected to the MySQL Database.')
 })
 
-
-
-
-
-
-
-
-
-
 ////////////////////////////////////////////////////////////////////////
 // HTTP Methods
 
-app.get('/users', (req, res, next) => {
+// Post request checking login credentials
+app.post('/login', (req, res) => {
 
-  console.log(req.body);
-  console.log(req.body.password);
-  console.log("checking");
+    console.log(req.body.username);
+})
+
+// Get request checking login succeeded
+
+
+
+
+
+
+
+
+app.get('/users', (req, res, next) => {
 
   connection.query('SELECT * FROM User', (err, result, fields) => {
     if (err) throw err;
@@ -106,43 +108,6 @@ app.get('/users', (req, res, next) => {
     }
   });
 })
-
-// app.get('/login', (req, res, next) => {
-//
-//   connection.query('SELECT * FROM User', (err, result, fields) => {
-//     if (err) throw err;
-//     else {
-//       console.log("Running query...");
-//       console.log("Retrieving list of users.\n");
-//
-//       res.json([
-//         {
-//   	      id: result[0].User_ID,
-//   	      name: result[0].Username
-//         }, {
-//   	      id: result[1].User_ID,
-//   	      name: result[1].Username
-//         },
-//         {
-//           id: result[2].User_ID,
-//           name: result[2].Username
-//         },
-//         {
-//           id: result[3].User_ID,
-//           name: result[3].Username
-//         }
-//       ]);
-//     }
-//   });
-// })
-
-app.post('/users', function (req, res) {
-    console.log(req);
-    console.log(req.body);
-    console.log(req.body.password);
-    console.log("checking");
-    res.end('Success');
-});
 
 app.post('/history', (req, res) => {
 
@@ -200,10 +165,6 @@ app.post('/coordinates', (req, res) => {
 
   res.end("Success!");
 });
-
-
-
-
 
 ////////////////////////////////////////////////////////////////////////
 // Start Application
