@@ -80,6 +80,9 @@ class App extends Component {
     }
   }
 
+  // ivan todo:
+  // If login flag is false, then do not display anything
+  // This is just a simple conditional
   render() {
     return (
       <div className="App">
