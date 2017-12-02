@@ -75,6 +75,8 @@ connection.connect(function(err) {
 // HTTP Methods
 
 app.get('/users', (req, res, next) => {
+  var uid = req.body.username;
+  console.log(uid);
 
   connection.query('SELECT * FROM User', (err, result, fields) => {
     if (err) throw err;
@@ -82,23 +84,13 @@ app.get('/users', (req, res, next) => {
       console.log("Running query...");
       console.log("Retrieving list of users.\n");
 
-      res.json([
-        {
-  	      id: result[0].User_ID,
-  	      name: result[0].Username
-        }, {
-  	      id: result[1].User_ID,
-  	      name: result[1].Username
-        },
-        {
-          id: result[2].User_ID,
-          name: result[2].Username
-        },
-        {
-          id: result[3].User_ID,
-          name: result[3].Username
-        }
-      ]);
+      var uid = req.body.username;
+      console.log(uid);
+      // for (var i = 0; i < result.length; i++) {
+      //   console.log(result[i]);
+      //   console.log(result[i].User_ID);
+      //   console.log(result[i].Username);
+      // }
     }
   });
 })
