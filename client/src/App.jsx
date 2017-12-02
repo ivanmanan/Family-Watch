@@ -13,9 +13,20 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      history: []
+      history: [],
+      loggedIn: false
     };
     this.appendHistory = this.appendHistory.bind(this);
+  }
+
+  // yb todo:
+  // Make this function passed to Profile.jsx
+  // See the render function at the bottom of this file
+  // and how I did appendHistory function
+  login() {
+    this.setState({
+      loggedIn: true
+    });
   }
 
   // Append existing history with newest addition

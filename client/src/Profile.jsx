@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Location from './Location';
 
-// Display username logged in and
-// his or her account status
-// e.g. host or participant
+// User login form
+// If user logs in successfully,
+// username will be displayed instead of login form
 class Profile extends Component {
 
 constructor() {
@@ -14,8 +14,10 @@ constructor() {
 
   handleSubmit(e) {
     e.preventDefault();
+
     console.log("Getting login information...");
-    console.log(this.refs.username);
+    console.log(this.refs.username.value);
+    console.log(this.refs.password.value);
     console.log("Login information obtained.");
 
     // On submit of the form, send a POST request with the data to the server.
@@ -26,18 +28,25 @@ constructor() {
       },
       method: 'POST',
       body: JSON.stringify({
-        username: this.refs.username,
-        password: this.refs.password
+        username: this.refs.username.value,
+        password: this.refs.password.value
       })
     })
     .then(function(body) {
       console.log(body);
     });
+
+    // yb todo:
+    // If login was successful, then call the login() function in App.jsx here
+    // See how I did appendHistory
   }
 
-
-  // Replace form after login with another component of username
-  // This will be replaced after token is sent to parent component
+  // yb todo:
+  // Replace form after successful login with another component of the username
+  // This will be replaced after login flag is sent to parent component
+  // Make an if-else React component
+  // https://reactjs.org/docs/conditional-rendering.html
+  // You may want to make login as a state here
   render() {
     return (
       <div className="Profile text-center">
@@ -53,7 +62,6 @@ constructor() {
       </div>
     );
   }
-
 }
 
 export default Profile;

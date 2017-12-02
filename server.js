@@ -68,24 +68,33 @@ connection.connect(function(err) {
 // Post request checking login credentials
 app.post('/login', (req, res) => {
 
-    console.log(req.body.username);
-})
+  console.log(req.body.username);
+  console.log(req.body.password);
 
-// Get request checking login succeeded
+  console.log("Running query...");
 
+  // yb todo:
+  // Make a query using WHERE condition on req.body.username and
+  // req.body.password
+  connection.query('SELECT * FROM User WHERE Username="' + req.body.username + '";', (err, result, fields) => {
+    if (err) throw err;
+    else {
+      // Check if one entry in SQL database shows up correctly
+      console.log("Verifying login credentials.\n");
+    }
+  });
 
-
-
-
-
-
+  // If login credentials are wrong, do something
+  // If login credentials are correct, send the User ID and username
+  // to front-end at Profile.jsx
+});
 
 app.get('/users', (req, res, next) => {
 
+  console.log("Running query...");
   connection.query('SELECT * FROM User', (err, result, fields) => {
     if (err) throw err;
     else {
-      console.log("Running query...");
       console.log("Retrieving list of users.\n");
 
       res.json([
@@ -107,7 +116,7 @@ app.get('/users', (req, res, next) => {
       ]);
     }
   });
-})
+});
 
 app.post('/history', (req, res) => {
 
