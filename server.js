@@ -86,7 +86,8 @@ app.get('/users', (req, res, next) => {
         {
   	      id: result[0].User_ID,
   	      name: result[0].Username
-        }, {
+        },
+        {
   	      id: result[1].User_ID,
   	      name: result[1].Username
         },
