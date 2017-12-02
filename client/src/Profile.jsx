@@ -18,14 +18,21 @@ constructor() {
     console.log("TEST");
     // On submit of the form, send a POST request with the data to the server.
     fetch('/users', {
-      method: 'POST'
-
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        username: self.refs.username,
+        password: self.refs.password
+      })
     })
     .then(function(res) {
       return res.json()
     })
-    .then(function(body) {
-      console.log(body);
+    .then(function(json) {
+      console.log(json);
     });
   }
 

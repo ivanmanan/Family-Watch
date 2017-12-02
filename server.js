@@ -137,9 +137,9 @@ app.get('/users', (req, res, next) => {
 // })
 
 app.post('/users', function (req, res) {
-  // console.log(res);
-    console.log(res.body);
-    // console.log(res.body.password);
+    console.log(req);
+    console.log(req.body);
+    console.log(req.body.password);
     console.log("checking");
     res.end('Success');
 });
