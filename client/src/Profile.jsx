@@ -6,26 +6,27 @@ import Location from './Location';
 // e.g. host or participant
 class Profile extends Component {
 
+constructor() {
+  super();
+  this.state = { username: {} };
+  this.onSubmit = this.handleSubmit.bind(this);
+}
+
   handleSubmit(e) {
     e.preventDefault();
     var self = this;
+    console.log("TEST");
     // On submit of the form, send a POST request with the data to the server.
     fetch('/users', {
-        method: 'GET',
-        body: JSON.stringify({
-          username: self.refs.username,
-          password: self.refs.password
-        }),
-        data: {
-          name: self.refs.username,
-          password: self.refs.password
-        }
-      })
-      .then(function(response) {
-        return response.json()
-      }).then(function(body) {
-        console.log(body);
-      });
+      method: 'POST'
+
+    })
+    .then(function(res) {
+      return res.json()
+    })
+    .then(function(body) {
+      console.log(body);
+    });
   }
 
 
@@ -33,9 +34,9 @@ class Profile extends Component {
     return (
       <div className="Profile text-center">
         <h1>Login Here</h1>
-        <form onSubmit={this.onSubmit}>
+        <form method="post" action="/users" onSubmit={this.onSubmit}>
           <input type="text" placeholder="Username" ref="username"/>
-          <input type="text" placeholder="Password" ref="password"/>
+          <input type="password" placeholder="Password" ref="password"/>
           <br />
           <input type="submit" />
         </form>

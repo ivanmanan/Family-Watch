@@ -31,7 +31,7 @@ app.set('view engine', 'html');
 
 // Parsers
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 
@@ -75,8 +75,10 @@ connection.connect(function(err) {
 // HTTP Methods
 
 app.get('/users', (req, res, next) => {
-  var uid = req.body.username;
-  console.log(uid);
+
+  console.log(req.body);
+  console.log(req.body.password);
+  console.log("checking");
 
   connection.query('SELECT * FROM User', (err, result, fields) => {
     if (err) throw err;
@@ -84,16 +86,63 @@ app.get('/users', (req, res, next) => {
       console.log("Running query...");
       console.log("Retrieving list of users.\n");
 
-      var uid = req.body.username;
-      console.log(uid);
-      // for (var i = 0; i < result.length; i++) {
-      //   console.log(result[i]);
-      //   console.log(result[i].User_ID);
-      //   console.log(result[i].Username);
-      // }
+      res.json([
+        {
+  	      id: result[0].User_ID,
+  	      name: result[0].Username
+        }, {
+  	      id: result[1].User_ID,
+  	      name: result[1].Username
+        },
+        {
+          id: result[2].User_ID,
+          name: result[2].Username
+        },
+        {
+          id: result[3].User_ID,
+          name: result[3].Username
+        }
+      ]);
     }
   });
 })
+
+// app.get('/login', (req, res, next) => {
+//
+//   connection.query('SELECT * FROM User', (err, result, fields) => {
+//     if (err) throw err;
+//     else {
+//       console.log("Running query...");
+//       console.log("Retrieving list of users.\n");
+//
+//       res.json([
+//         {
+//   	      id: result[0].User_ID,
+//   	      name: result[0].Username
+//         }, {
+//   	      id: result[1].User_ID,
+//   	      name: result[1].Username
+//         },
+//         {
+//           id: result[2].User_ID,
+//           name: result[2].Username
+//         },
+//         {
+//           id: result[3].User_ID,
+//           name: result[3].Username
+//         }
+//       ]);
+//     }
+//   });
+// })
+
+app.post('/users', function (req, res) {
+  // console.log(res);
+    console.log(res.body);
+    // console.log(res.body.password);
+    console.log("checking");
+    res.end('Success');
+});
 
 app.post('/history', (req, res) => {
 
