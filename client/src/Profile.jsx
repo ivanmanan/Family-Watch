@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import Location from './Location';
+import App from './App';
 
 // User login form
 // If user logs in successfully,
 // username will be displayed instead of login form
 class Profile extends Component {
 
-constructor() {
-  super();
-  this.state = { username: {} };
-  this.onSubmit = this.handleSubmit.bind(this);
-}
+  constructor(props) {
+    super(props);
+    this.state = { username: {} };
+    this.onSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    fetch('/login')
+      .then((res) => res.json())
+      .then((userinfo) => console.log(userinfo));
+  }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -36,6 +43,8 @@ constructor() {
       console.log(body);
     });
 
+    console.log("TEST!");
+    this.props.login();
 
     // yb todo:
     // If login was successful, then call the login() function in App.jsx here

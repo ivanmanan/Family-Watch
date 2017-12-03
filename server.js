@@ -94,15 +94,14 @@ app.post('/login', (req, res) => {
           username: result[0].Username,
           password: result[0].Password
         });
+        console.log("Hey1");
         console.log(userinfo);
+        res.contentType('application/json');
+        res.send(JSON.stringify(userinfo));
 
       }
     }
   });
-
-  res.contentType('application/json');
-  res.send(JSON.stringify(userinfo));
-  console.log(userinfo);
 
   // If login credentials are wrong, do something
   // If login credentials are correct, send the User ID and username

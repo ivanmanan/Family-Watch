@@ -25,6 +25,9 @@ class App extends Component {
   // See the render function at the bottom of this file
   // and how I did appendHistory function
   login() {
+    console.log(this.state.loggedIn);
+    console.log(this.props);
+
     this.setState({
       loggedIn: true
     });
