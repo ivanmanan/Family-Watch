@@ -85,6 +85,8 @@ app.post('/login', (req, res) => {
       console.log("Verifying login credentials.\n");
       if(Object.keys(result).length === 0) {
         console.log("Wrong username and password!");
+        res.contentType('application/json');
+        res.send(JSON.stringify(userinfo));
       }
       else {
         console.log(result);

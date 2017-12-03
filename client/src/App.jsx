@@ -14,25 +14,42 @@ class App extends Component {
     super(props);
     this.state = {
       history: [],
-      loggedIn: false
+      loggedIn: false,
+      loginTried: false
     };
     this.appendHistory = this.appendHistory.bind(this);
     this.login = this.login.bind(this);
+    this.loginFailed = this.loginFailed.bind(this);
+    this.logout = this.logout.bind(this);
+    // console.log(sessionStorage.getItem('loggedIn'));
   }
 
   // yb todo:
   // Make this function passed to Profile.jsx
   // See the render function at the bottom of this file
   // and how I did appendHistory function
+  
   login() {
-    console.log(this.state.loggedIn);
-    console.log(this.props);
-
     this.setState({
       loggedIn: true
     });
 
-    console.log(this.state.loggedIn);
+    // sessionStorage.setItem('loggedIn', true);
+  }
+
+  logout() {
+    this.setState({
+      loggedIn: false
+    });
+
+    // sessionStorage.setItem('loggedIn', false);
+    // sessionStorage.setItem('username', '');
+  }
+
+  loginFailed() {
+    this.setState({
+      loginTried: true
+    });
   }
 
   // Append existing history with newest addition
@@ -105,7 +122,7 @@ class App extends Component {
             col-md-2
             col-sm-2
             col-xs-2">
-            <Profile login={this.login}/>
+            <Profile login={this.login} loggedIn={this.state.loggedIn} loginFailed={this.loginFailed} loginTried={this.state.loginTried} local={sessionStorage.getItem('loggedIn')} logout={this.logout}/>
           </div>
 
           <div className="Maps-block
