@@ -17,6 +17,7 @@ class App extends Component {
       loggedIn: false
     };
     this.appendHistory = this.appendHistory.bind(this);
+    this.login = this.login.bind(this);
   }
 
   // yb todo:
@@ -27,6 +28,8 @@ class App extends Component {
     this.setState({
       loggedIn: true
     });
+
+    console.log(this.state.loggedIn);
   }
 
   // Append existing history with newest addition
@@ -99,7 +102,7 @@ class App extends Component {
             col-md-2
             col-sm-2
             col-xs-2">
-            <Profile/>
+            <Profile login={this.login}/>
           </div>
 
           <div className="Maps-block

@@ -73,16 +73,36 @@ app.post('/login', (req, res) => {
 
   console.log("Running query...");
 
+  var userinfo = [];
+
   // yb todo:
   // Make a query using WHERE condition on req.body.username and
   // req.body.password
-  connection.query('SELECT * FROM User WHERE Username="' + req.body.username + '";', (err, result, fields) => {
+  connection.query('SELECT * FROM User WHERE Username="' + req.body.username + '" and Password="' + req.body.password + '";', (err, result, fields) => {
     if (err) throw err;
     else {
       // Check if one entry in SQL database shows up correctly
       console.log("Verifying login credentials.\n");
+      if(Object.keys(result).length === 0) {
+        console.log("Wrong username and password!");
+      }
+      else {
+        console.log(result);
+        console.log(result[0].Username);
+        console.log(result[0].Password);
+        userinfo.push({
+          username: result[0].Username,
+          password: result[0].Password
+        });
+        console.log(userinfo);
+
+      }
     }
   });
+
+  res.contentType('application/json');
+  res.send(JSON.stringify(userinfo));
+  console.log(userinfo);
 
   // If login credentials are wrong, do something
   // If login credentials are correct, send the User ID and username
