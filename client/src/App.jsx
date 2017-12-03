@@ -58,7 +58,7 @@ class App extends Component {
       if (typeof this.state.history[0] === 'undefined')
         console.log("Initializing history.");
       else
-        var temp = this.state.history;
+        temp = this.state.history;
 
       for (var i = 0; i < addition.length; i++) {
         temp.push({

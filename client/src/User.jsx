@@ -53,15 +53,17 @@ class History extends Component {
         })
       })
         .then(res => res.json())
-        .then(history => this.setState({ history }));
+        .then(history => this.setState({ history }, () => {
+          // Callback function for immediate state mutations
 
-      if (typeof this.state.history[0] === 'undefined') {
-        console.log("Undefined history in User.jsx")
-        this.props.appendHistory([], false);
-      }
-      else { // Pass history to parent component
-        this.props.appendHistory(this.state.history, true);
-      }
+          if (typeof this.state.history[0] === 'undefined') {
+            console.log("Undefined history in User.jsx")
+            this.props.appendHistory([], false);
+          }
+          else { // Pass history to parent component
+            this.props.appendHistory(this.state.history, true);
+          }
+        }));
     }
     else
       this.props.appendHistory([], false);

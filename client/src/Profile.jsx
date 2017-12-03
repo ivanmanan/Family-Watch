@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Location from './Location';
-import App from './App';
 
 // User login form
 // If user logs in successfully,
@@ -9,16 +8,18 @@ class Profile extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { username: {} };
+    this.state = { username: [], userLogin: [] };
     this.onSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    fetch('/login')
-      .then((res) => res.json())
-      .then((userinfo) => console.log(userinfo));
-  }
-
+  // yb: You do not need this; a single POST request is enough to verify
+  //     that the user was logged in successfully
+  /* componentDidMount() {
+   *   fetch('/login')
+   *     .then((res) => res.json())
+   *     .then((userinfo) => console.log(userinfo));
+   * }
+   */
   handleSubmit(e) {
     e.preventDefault();
 
@@ -39,16 +40,22 @@ class Profile extends Component {
         password: this.refs.password.value
       })
     })
-    .then(function(body) {
-      console.log(body);
-    });
+      .then(res => res.json())
+      .then(userinfo => this.setState({ userLogin: userinfo }, () => {
 
-    console.log("TEST!");
-    this.props.login();
+        // Must be done as a callback function for immediate state mutations
+        console.log("Reading data sent from server...");
+        console.log(this.state.userLogin[0]);
 
-    // yb todo:
-    // If login was successful, then call the login() function in App.jsx here
-    // See how I did appendHistory
+        console.log("TEST!");
+        this.props.login();
+
+
+        // yb todo:
+        // If login was successful, then call the login() function in App.jsx here
+        // See how I did appendHistory
+
+      }));
   }
 
   // yb todo:
