@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 
 const FIVE_MINUTES = 1000 * 60 * 5;
 /* const TIME = FIVE_MINUTES;*/
-const TIME = 6000;
+
+// Real time for display:
+const TIME = 30000;
 
 class Location extends Component {
   constructor(props) {
@@ -34,7 +36,8 @@ class Location extends Component {
       position => {
         this.setState({
           longitude: (position.coords.longitude).toFixed(6),
-          latitude: (position.coords.latitude).toFixed(6)
+          latitude: (position.coords.latitude).toFixed(6),
+          trackID: this.props.trackID
         });
       },
       error => console.log(error)

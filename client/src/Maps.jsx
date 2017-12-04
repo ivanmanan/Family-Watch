@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 var counter = 0;
-var TIME = 4000;
+var TIME = 3000;
 
 export class Maps extends Component {
   constructor(props) {
@@ -122,19 +122,7 @@ export class Maps extends Component {
       });
 
       maps.event.trigger(this.map, 'ready');
-
-      // let centerChangedTimeout;
-      // this.map.addListener('dragend', (evt) => {
-      //   if (centerChangedTimeout) {
-      //     clearTimeout(centerChangedTimeout);
-      //     centerChangedTimeout = null;
-      //   }
-      //   centerChangedTimeout = setTimeout(() => {
-      //     this.props.onMove(this.map);
-      //   }, 0);
-      // })
     }
-    // ...
   }
 
   handleEvent(evtName) {
@@ -166,38 +154,36 @@ export class Maps extends Component {
     var allMarkers = [];
 
     console.log("Displaying Maps stuff...");
-    /* if (typeof this.state.history != 'undefined')
-     *   if (typeof this.state.history[0] != 'undefined')
-     *     console.log(this.state.history[0].longitude);*/
 
-
-    /* var temp = (
-     *   <Marker
-     *     onClick={this.onMarkerClick}
-     *     name={'Current location'}
-     *     position={{lat: 34.07, lng: -118.449745}}
-     *   />
-     * );
-     * allMarkers.push(temp);*/
-
-
-    // figure out history length
     if (typeof this.state.history != 'undefined')
       if (typeof this.state.history[0] != 'undefined') {
-        console.log(this.state.history.length);
-        console.log(this.state.history);
         for (var i = 0; i < this.state.history.length; i++) {
           counter++;
-          var temp = (
-              <Marker
-                key={counter}
-                onClick={this.onMarkerClick}
-                name={counter}
-                position={{lat: this.state.history[i].latitude,
-                           lng: this.state.history[i].longitude}}
-              />
+          var mark = (
+            <Marker
+              key={counter}
+              onClick={this.onMarkerClick}
+              name={counter}
+              position={{lat: this.state.history[i].latitude,
+                         lng: this.state.history[i].longitude}}
+            />
           );
-          allMarkers.push(temp);
+
+          // lewis todo:
+          // This needs to be inside the marker tag
+          // https://stackoverflow.com/questions/46936776/react-google-map-multiple-info-window-open
+          // I may need to parse the time to reveal date and hour only
+          var time = (
+            <InfoWindow
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}>
+              <div>
+                <h5>{this.state.history[i].time}</h5>
+              </div>
+            </InfoWindow>
+          );
+          allMarkers.push(mark);
+          allMarkers.push(time);
         }
       }
     // can insert info window below Marker tag
@@ -208,25 +194,8 @@ export class Maps extends Component {
   render() {
     return (
       <div className="Maps">
-        <Map onClick={this.onMapClick} google={this.props.google} zoom={6}>
-          <Marker onClick={this.onMarkerClick} name={'Current location'} />
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}>
-            <div>
-              <h1>test</h1>
-            </div>
-          </InfoWindow>
-          {/* Render markers history here */}
+        <Map onClick={this.onMapClick} google={this.props.google} zoom={5}>
           {this.renderMarkers()}
-          {/* May want to move infowindow to function as well */}
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}>
-            <div>
-              <h1>test2</h1>
-            </div>
-          </InfoWindow>
         </Map>
       </div>
     );
@@ -243,43 +212,13 @@ Maps.propTypes = {
 
 Maps.defaultProps = {
   zoom: 13,
-  // San Francisco, by default
   initialCenter: {
     lat: 34.068691,
     lng: -118.449745
   },
-  centerAroundCurrentLocation: false,
+  centerAroundCurrentLocation: true,
   onMove: function() {} // default prop
 }
-
-// export class Markers extends React.Component {
-//   componentDidUpdate(prevProps) {
-//     if ((this.props.map !== prevProps.map) ||
-//       (this.props.position !== prevProps.position)) {
-//         this.renderMarker();
-//     }
-//   }
-//   renderMarkers() {
-//       let {
-//         map, google, position, mapCenter
-//       } = this.props;
-//
-//       let pos = position || mapCenter;
-//       position = new google.maps.LatLng(pos.lat, pos.lng);
-//
-//       const pref = {
-//         map: map,
-//         position: position
-//       };
-//       this.marker = new google.maps.Marker(pref);
-//   }
-//   // ...
-// }
-//
-// Markers.propTypes = {
-//   position: React.PropTypes.object,
-//   map: React.PropTypes.object
-// }
 
 export default GoogleApiWrapper({
   apiKey: ('AIzaSyBwu92u8xtE-MLIYMA0gP30EOms2FSnWkg')
