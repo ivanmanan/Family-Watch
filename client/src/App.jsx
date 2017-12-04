@@ -15,7 +15,8 @@ class App extends Component {
     this.state = {
       history: [],
       loggedIn: sessionStorage.getItem('loggedIn'),
-      loginTried: false
+      loginTried: false,
+      user_id: sessionStorage.getItem('user_id')
     };
     this.appendHistory = this.appendHistory.bind(this);
     this.login = this.login.bind(this);
@@ -101,6 +102,8 @@ class App extends Component {
   }
 
   render() {
+    console.log("User ID:");
+    console.log(this.state.user_id);
 
     if (!this.state.loggedIn)
       return (

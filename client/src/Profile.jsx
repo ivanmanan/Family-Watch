@@ -51,6 +51,7 @@ class Profile extends Component {
             this.props.login();
             this.setState({username: this.state.userLogin[0].username});
             sessionStorage.setItem('username', this.state.userLogin[0].username);
+            sessionStorage.setItem('user_id', this.state.userLogin[0].user_id);
           }
           //  if login failed
           else {

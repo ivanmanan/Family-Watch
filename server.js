@@ -84,9 +84,11 @@ app.post('/login', (req, res) => {
       else {
         console.log(result[0].Username);
         console.log(result[0].Password);
+        console.log(result[0].User_ID);
         userinfo.push({
           username: result[0].Username,
-          password: result[0].Password
+          password: result[0].Password,
+          user_id: result[0].User_ID
         });
         res.contentType('application/json');
         res.send(JSON.stringify(userinfo));
