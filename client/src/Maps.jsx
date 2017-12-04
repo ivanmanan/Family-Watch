@@ -3,16 +3,19 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
+var counter = 0;
+var TIME = 6000;
+
 export class Maps extends Component {
   constructor(props) {
     super(props);
 
     const {lat, lng} = this.props.initialCenter;
     this.state = {
-      history: this.props.history,
       currentLocation: {
         lat: lat,
-        lng: lng
+        lng: lng,
+        history: []
       }
     }
 
@@ -73,7 +76,25 @@ export class Maps extends Component {
         })
       }
     }
+
+    // ivan's code
+    this.timerID = setInterval(
+      () => this.updateHistory(),
+      TIME
+    );
     this.loadMap();
+  }
+
+  // ivan's code
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  // ivan's code
+  updateHistory() {
+    this.setState({
+      history: this.props.history
+    });
   }
 
   loadMap() {
@@ -139,12 +160,55 @@ export class Maps extends Component {
     }
   }
 
+  renderMarkers() {
+    // First need to clear up all current markers
+
+    var allMarkers = [];
+
+    console.log("Displaying Maps stuff...");
+    /* if (typeof this.state.history != 'undefined')
+     *   if (typeof this.state.history[0] != 'undefined')
+     *     console.log(this.state.history[0].longitude);*/
+
+
+    /* var temp = (
+     *   <Marker
+     *     onClick={this.onMarkerClick}
+     *     name={'Current location'}
+     *     position={{lat: 34.07, lng: -118.449745}}
+     *   />
+     * );
+     * allMarkers.push(temp);*/
+
+
+    // figure out history length
+    if (typeof this.state.history != 'undefined')
+      if (typeof this.state.history[0] != 'undefined') {
+        console.log(this.state.history.length);
+        console.log(this.state.history);
+        for (var i = 0; i < this.state.history.length; i++) {
+          counter++;
+          var temp = (
+              <Marker
+                key={counter}
+                onClick={this.onMarkerClick}
+                name={counter}
+                position={{lat: this.state.history[i].latitude,
+                           lng: this.state.history[i].longitude}}
+              />
+          );
+          allMarkers.push(temp);
+        }
+      }
+    // can insert info window below Marker tag
+
+    return allMarkers;
+  }
+
   render() {
-    console.log("Reading Maps.jsx GPS history: ");
-    console.log(this.props.history);
     return (
       <div className="Maps">
-        <Map onClick={this.onMapClick} google={this.props.google} zoom={14}>
+        <Map onClick={this.onMapClick} google={this.props.google} zoom={6}>
           <Marker onClick={this.onMarkerClick} name={'Current location'} />
           <InfoWindow
             marker={this.state.activeMarker}
@@ -153,10 +217,9 @@ export class Maps extends Component {
               <h1>test</h1>
             </div>
           </InfoWindow>
-          <Marker
-            onClick={this.onMarkerClick}
-            name={'Current location'}
-            position={{lat: 37.778519, lng: -122.405640}}/>
+          {/* Render markers history here */}
+          {this.renderMarkers()}
+          {/* May want to move infowindow to function as well */}
           <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}>
@@ -182,8 +245,8 @@ Maps.defaultProps = {
   zoom: 13,
   // San Francisco, by default
   initialCenter: {
-    lat: 37.774929,
-    lng: -122.419416
+    lat: 34.068691,
+    lng: -118.449745
   },
   centerAroundCurrentLocation: false,
   onMove: function() {} // default prop

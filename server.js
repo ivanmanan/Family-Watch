@@ -3,9 +3,7 @@
 ////////////////////////////////////////////////////////////////////////
 // Modules
 var express           =     require('express')
-  , passport          =     require('passport')
   , util              =     require('util')
-  , FacebookStrategy  =     require('passport-facebook').Strategy
   , session           =     require('express-session')
   , config            =     require('./config')
   , mysql             =     require('mysql');

@@ -59,14 +59,18 @@ class App extends Component {
   // Callback function App.jsx --> Panel.jsx --> User.jsx
   appendHistory(addition, userFlag) {
 
-    // If function has been run four times consecutively,
-    // then clear history
+    // If history state has more than 200 inputs, then clear it
+    /* if (this.state.history.length > 200) {
+     *   this.setState({
+     *     history: []
+     *   })
+     * }*/
+
     if (userCount % 4 === 0) {
       this.setState({
         history: []
       });
     }
-
     userCount++;
 
     // Check userFlag -- if it's false, then user checkbox was not checked
@@ -83,9 +87,9 @@ class App extends Component {
       for (var i = 0; i < addition.length; i++) {
         temp.push({
           id: user_ID,
-          time: addition[0].time,
-          longitude: addition[0].longitude,
-          latitude: addition[0].latitude
+          time: addition[i].time,
+          longitude: addition[i].longitude,
+          latitude: addition[i].latitude
         })
       }
 
@@ -93,18 +97,6 @@ class App extends Component {
         history: temp
       });
 
-      // Changed history state -- send this to Maps.jsx
-      /* console.log(this.state.history);*/
-
-      /* console.log("Working on appending history.");
-       * console.log("User ID: " + addition[0].id);
-       * console.log(addition[0].time);
-       * console.log(addition[0].longitude);
-       * console.log(addition);*/
-
-      // todo: sort the array by time at Maps.jsx file
-
-      // Function to update state in Maps.jsx child component
     }
   }
 

@@ -39,7 +39,6 @@ class History extends Component {
   }
 
   // Retrieve GPS history of a user
-  // ivan todo: this will not work until I can send user_id to the history
   queryHistory() {
     if (this.state.checked) {
 
