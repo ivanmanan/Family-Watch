@@ -30,6 +30,10 @@ class App extends Component {
     });
 
     sessionStorage.setItem('loggedIn', true);
+
+    this.setState({
+      user_id: sessionStorage.getItem('user_id')
+    });
   }
 
   logout() {
