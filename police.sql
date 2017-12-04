@@ -8,7 +8,7 @@ CREATE TABLE User (
 );
 
 CREATE TABLE GPS (
-       hid INT NOT NULL,
+       hid INT,
        Time_record TIMESTAMP NOT NULL,
        Longitude FLOAT(10,6),
        Latitude FLOAT(10,6),

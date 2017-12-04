@@ -84,7 +84,7 @@ class Profile extends Component {
             <input type="submit" value="Log Out" />
           </form>
           <img id="eye-logo" src="/images/sauron.png" alt="Police-Watch"/>
-          <Location/>
+          <Location trackID={this.state.trackID}/>
         </div>
       );
     }
@@ -93,8 +93,6 @@ class Profile extends Component {
       var pStyle = {
         color: 'red'
       };
-
-      console.log("Reading user ID passed from App.jsx: " + this.props.trackID);
 
       return (
         <div className="Profile text-center">
@@ -106,7 +104,7 @@ class Profile extends Component {
             <button onClick={this.reset}>Log In</button>
           </form>
           <img id="eye-logo" src="/images/sauron.png" alt="Police-Watch"/>
-          <Location/>
+          <Location trackID={this.state.trackID}/>
         </div>
       );
     }

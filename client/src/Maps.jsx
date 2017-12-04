@@ -9,7 +9,7 @@ export class Maps extends Component {
 
     const {lat, lng} = this.props.initialCenter;
     this.state = {
-
+      history: this.props.history,
       currentLocation: {
         lat: lat,
         lng: lng
@@ -140,6 +140,8 @@ export class Maps extends Component {
   }
 
   render() {
+    console.log("Reading Maps.jsx GPS history: ");
+    console.log(this.props.history);
     return (
       <div className="Maps">
         <Map onClick={this.onMapClick} google={this.props.google} zoom={14}>

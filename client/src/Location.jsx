@@ -27,7 +27,6 @@ class Location extends Component {
 
   // Updates GPS state
   getLocation() {
-    console.log("Reading user ID passed from User.jsx: " + this.state.trackID);
 
     console.log("Retrieving location...");
     // Need to specify high accuracy is off

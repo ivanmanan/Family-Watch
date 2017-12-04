@@ -94,7 +94,7 @@ class App extends Component {
       });
 
       // Changed history state -- send this to Maps.jsx
-      //console.log(this.state.history);
+      /* console.log(this.state.history);*/
 
       /* console.log("Working on appending history.");
        * console.log("User ID: " + addition[0].id);
@@ -103,6 +103,8 @@ class App extends Component {
        * console.log(addition);*/
 
       // todo: sort the array by time at Maps.jsx file
+
+      // Function to update state in Maps.jsx child component
     }
   }
 
@@ -126,7 +128,10 @@ class App extends Component {
               col-md-2
               col-sm-2
               col-xs-2">
-              <Profile login={this.login} loggedIn={this.state.loggedIn} loginFailed={this.loginFailed} loginTried={this.state.loginTried} logout={this.logout} trackID={this.state.user_id}/>
+              <Profile login={this.login} loggedIn={this.state.loggedIn}
+                       loginFailed={this.loginFailed}
+                       loginTried={this.state.loginTried} logout={this.logout}
+                       trackID={this.state.user_id}/>
             </div>
           </div>
         </div>
@@ -147,7 +152,10 @@ class App extends Component {
               col-md-2
               col-sm-2
               col-xs-2">
-              <Profile login={this.login} loggedIn={this.state.loggedIn} loginFailed={this.loginFailed} loginTried={this.state.loginTried} logout={this.logout} trackID={this.state.user_id}/>
+              <Profile login={this.login} loggedIn={this.state.loggedIn}
+                       loginFailed={this.loginFailed}
+                       loginTried={this.state.loginTried} logout={this.logout}
+                       trackID={this.state.user_id}/>
             </div>
             <div className="Maps-block
               col-md-7

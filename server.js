@@ -132,30 +132,34 @@ app.post('/history', (req, res) => {
   // Retrieve GPS history from this user
   const user_id = req.body.user_id;
 
-  connection.query('SELECT * from GPS where hid=' + user_id + ';', (err, result, fields) => {
-    if (err) {
-      console.log("GPS history retrieval failed.");
-      throw err;
-    }
-    else {
-      console.log("Running query...");
-      // Replace user with actual person getting queried
-      console.log("Retrieving GPS history\n");
-
-      var history = [];
-      for (var i = 0; i < result.length; i++) {
-        history.push({
-          id: user_id,
-          time: result[i].Time_record,
-          longitude: result[i].Longitude,
-          latitude: result[i].Latitude
-        })
+  if (typeof user_id === 'undefined')
+    console.log("Do not run query...");
+  else {
+    connection.query('SELECT * from GPS where hid=' + user_id + ';', (err, result, fields) => {
+      if (err) {
+        console.log("GPS history retrieval failed.");
+        throw err;
       }
+      else {
+        console.log("Running query...");
+        // Replace user with actual person getting queried
+        console.log("Retrieving GPS history\n");
 
-      res.contentType('application/json');
-      res.send(JSON.stringify(history));
-    }
-  });
+        var history = [];
+        for (var i = 0; i < result.length; i++) {
+          history.push({
+            id: user_id,
+            time: result[i].Time_record,
+            longitude: result[i].Longitude,
+            latitude: result[i].Latitude
+          })
+        }
+
+        res.contentType('application/json');
+        res.send(JSON.stringify(history));
+      }
+    });
+  }
 });
 
 
@@ -171,10 +175,7 @@ app.post('/coordinates', (req, res) => {
   console.log("Seeing server trackID:");
   console.log(trackID + '\n');
 
-  // ivan todo:
-  // Need to replace query with '1' to respective user ID
-
-  if (longitude === 0 && latitude === 0 || typeof trackID === 'undefined') {
+  if (longitude === 0 && latitude === 0 || isNaN(trackID)) {
     console.log("Setting up GPS...\n")
   }
   else {
