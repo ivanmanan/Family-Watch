@@ -52,10 +52,10 @@ class Profile extends Component {
           //  if login was successful
           if(this.state.userLogin[0]) {
             console.log("Login Success!");
-            this.props.login();
             this.setState({username: this.state.userLogin[0].username});
             sessionStorage.setItem('username', this.state.userLogin[0].username);
             sessionStorage.setItem('user_id', this.state.userLogin[0].user_id);
+            this.props.login();
           }
           //  if login failed
           else {
