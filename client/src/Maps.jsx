@@ -1,46 +1,221 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
-// class Maps extends Component {
-//   render() {
-//     return (
-//       <div className="Maps">
-//         <h1>Render Maps here.</h1>
-//         <h3>Google API key: AIzaSyBwu92u8xtE-MLIYMA0gP30EOms2FSnWkg</h3>
-//       </div>
-//     );
-//   }
-// }
-
 export class Maps extends Component {
+  constructor(props) {
+    super(props);
+
+    const {lat, lng} = this.props.initialCenter;
+    this.state = {
+
+      currentLocation: {
+        lat: lat,
+        lng: lng
+      }
+    }
+
+    this.onMarkerClick = this.onMarkerClick.bind(this);
+    this.onMapClicked = this.onMapClicked.bind(this);
+  }
+
+  onMarkerClick(props, marker, e) {
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
+  }
+
+  onMapClicked(props) {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      })
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.google !== this.props.google) {
+      this.loadMap();
+    }
+    if (prevState.currentLocation !== this.state.currentLocation) {
+      this.recenterMap();
+    }
+  }
+
+  recenterMap() {
+    const map = this.map;
+    const curr = this.state.currentLocation;
+
+    const google = this.props.google;
+    const maps = google.maps;
+
+    if (map) {
+      let center = new maps.LatLng(curr.lat, curr.lng)
+      map.panTo(center)
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.centerAroundCurrentLocation) {
+      if (navigator && navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((pos) => {
+          const coords = pos.coords;
+          this.setState({
+            currentLocation: {
+              lat: coords.latitude,
+              lng: coords.longitude
+            }
+          })
+        })
+      }
+    }
+    this.loadMap();
+  }
+
+  loadMap() {
+    if (this.props && this.props.google) {
+      // google is available
+      const {google} = this.props;
+      const maps = google.maps;
+
+      const mapRef = this.refs.map;
+      const node = ReactDOM.findDOMNode(mapRef);
+
+      let {initialCenter, zoom} = this.props;
+      const {lat, lng} = this.state.currentLocation;
+      const center = new maps.LatLng(lat, lng);
+      const mapConfig = Object.assign({}, {
+        center: center,
+        zoom: zoom
+      })
+      this.map = new maps.Map(node, mapConfig);
+
+      const evtNames = ['ready', 'click', 'dragend'];
+
+      evtNames.forEach(e => {
+        this.map.addListener(e, this.handleEvent(e));
+      });
+
+      maps.event.trigger(this.map, 'ready');
+
+      // let centerChangedTimeout;
+      // this.map.addListener('dragend', (evt) => {
+      //   if (centerChangedTimeout) {
+      //     clearTimeout(centerChangedTimeout);
+      //     centerChangedTimeout = null;
+      //   }
+      //   centerChangedTimeout = setTimeout(() => {
+      //     this.props.onMove(this.map);
+      //   }, 0);
+      // })
+    }
+    // ...
+  }
+
+  handleEvent(evtName) {
+    const camelize = function(str) {
+      return str.split(' ').map(function(word){
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      }).join('');
+    }
+
+    let timeout;
+    const handlerName = `on${camelize(evtName)}`;
+
+    return (e) => {
+      if (timeout) {
+        clearTimeout(timeout);
+        timeout = null;
+      }
+      timeout = setTimeout(() => {
+        if (this.props[handlerName]) {
+          this.props[handlerName](this.props, this.map, e);
+        }
+      }, 0);
+    }
+  }
+
   render() {
     return (
       <div className="Maps">
-        <Map google={this.props.google} zoom={14}>
-          <Marker onClick={this.onMarkerClick}
-                  name={'Current location'} />
+        <Map onClick={this.onMapClick} google={this.props.google} zoom={14}>
+          <Marker onClick={this.onMarkerClick} name={'Current location'} />
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}>
+            <div>
+              <h1>test</h1>
+            </div>
+          </InfoWindow>
+          <Marker
+            onClick={this.onMarkerClick}
+            name={'Current location'}
+            position={{lat: 37.778519, lng: -122.405640}}/>
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}>
+            <div>
+              <h1>test2</h1>
+            </div>
+          </InfoWindow>
         </Map>
       </div>
     );
   }
 }
 
+Maps.propTypes = {
+  google: React.PropTypes.object,
+  zoom: React.PropTypes.number,
+  initialCenter: React.PropTypes.object,
+  centerAroundCurrentLocation: React.PropTypes.bool,
+  onMove: React.PropTypes.func,
+}
+
+Maps.defaultProps = {
+  zoom: 13,
+  // San Francisco, by default
+  initialCenter: {
+    lat: 37.774929,
+    lng: -122.419416
+  },
+  centerAroundCurrentLocation: false,
+  onMove: function() {} // default prop
+}
+
+// export class Markers extends React.Component {
+//   componentDidUpdate(prevProps) {
+//     if ((this.props.map !== prevProps.map) ||
+//       (this.props.position !== prevProps.position)) {
+//         this.renderMarker();
+//     }
+//   }
+//   renderMarkers() {
+//       let {
+//         map, google, position, mapCenter
+//       } = this.props;
+//
+//       let pos = position || mapCenter;
+//       position = new google.maps.LatLng(pos.lat, pos.lng);
+//
+//       const pref = {
+//         map: map,
+//         position: position
+//       };
+//       this.marker = new google.maps.Marker(pref);
+//   }
+//   // ...
+// }
+//
+// Markers.propTypes = {
+//   position: React.PropTypes.object,
+//   map: React.PropTypes.object
+// }
+
 export default GoogleApiWrapper({
   apiKey: ('AIzaSyBwu92u8xtE-MLIYMA0gP30EOms2FSnWkg')
 }) (Maps)
-
-// export default Maps;
-
-// <script>
-//   function initMap(){
-//     var options = {
-//       zoom: 8,
-//       center: {lat: 34.0689, lng: 118.4452}
-//     }
-//
-//     var map = new google.maps.Map(document.getElementById('map'), options)
-//   }
-// </script>
-// <script async defer
-//   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwu92u8xtE-MLIYMA0gP30EOms2FSnWkg&callback=initMap">
-//   </script>
