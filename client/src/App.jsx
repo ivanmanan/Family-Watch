@@ -14,27 +14,26 @@ class App extends Component {
     super(props);
     this.state = {
       history: [],
-      loggedIn: false,
+      loggedIn: sessionStorage.getItem('loggedIn'),
       loginTried: false
     };
     this.appendHistory = this.appendHistory.bind(this);
     this.login = this.login.bind(this);
     this.loginFailed = this.loginFailed.bind(this);
     this.logout = this.logout.bind(this);
-    // console.log(sessionStorage.getItem('loggedIn'));
   }
 
   // yb todo:
   // Make this function passed to Profile.jsx
   // See the render function at the bottom of this file
   // and how I did appendHistory function
-  
+
   login() {
     this.setState({
       loggedIn: true
     });
 
-    // sessionStorage.setItem('loggedIn', true);
+    sessionStorage.setItem('loggedIn', true);
   }
 
   logout() {
@@ -42,8 +41,11 @@ class App extends Component {
       loggedIn: false
     });
 
-    // sessionStorage.setItem('loggedIn', false);
-    // sessionStorage.setItem('username', '');
+    this.setState({
+      loginTried: false
+    });
+
+    sessionStorage.setItem('loggedIn', false);
   }
 
   loginFailed() {
@@ -122,7 +124,7 @@ class App extends Component {
             col-md-2
             col-sm-2
             col-xs-2">
-            <Profile login={this.login} loggedIn={this.state.loggedIn} loginFailed={this.loginFailed} loginTried={this.state.loginTried} local={sessionStorage.getItem('loggedIn')} logout={this.logout}/>
+            <Profile login={this.login} loggedIn={this.state.loggedIn} loginFailed={this.loginFailed} loginTried={this.state.loginTried} logout={this.logout}/>
           </div>
 
           <div className="Maps-block
