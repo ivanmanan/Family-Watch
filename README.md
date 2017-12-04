@@ -61,6 +61,11 @@
    npm start
    ```
 
+9. Generate certificates in the police-watch directory.
+   ```bash
+   ./genererate-certificates.sh
+   ```
+
 ## Division
 
 1. Get GPS working on mobile devices. Get server setup. Be able to render Maps
