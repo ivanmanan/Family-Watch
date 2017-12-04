@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 const FIVE_MINUTES = 1000 * 60 * 5;
-const TIME = FIVE_MINUTES;
+/* const TIME = FIVE_MINUTES;*/
+const TIME = 15000;
 
 // When checkbox is checked, submit a GET request
 // To retrieve GPS history of that user
@@ -38,7 +39,7 @@ class History extends Component {
   }
 
   // Retrieve GPS history of a user
-  // this will not work until I can send user_id to the history
+  // ivan todo: this will not work until I can send user_id to the history
   queryHistory() {
     if (this.state.checked) {
 

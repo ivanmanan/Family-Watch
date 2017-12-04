@@ -68,16 +68,9 @@ connection.connect(function(err) {
 // Post request checking login credentials
 app.post('/login', (req, res) => {
 
-  console.log(req.body.username);
-  console.log(req.body.password);
-
   console.log("Running query...");
-
   var userinfo = [];
 
-  // yb todo:
-  // Make a query using WHERE condition on req.body.username and
-  // req.body.password
   connection.query('SELECT * FROM User WHERE Username="' + req.body.username + '" and Password="' + req.body.password + '";', (err, result, fields) => {
     if (err) throw err;
     else {
@@ -89,25 +82,17 @@ app.post('/login', (req, res) => {
         res.send(JSON.stringify(userinfo));
       }
       else {
-        console.log(result);
         console.log(result[0].Username);
         console.log(result[0].Password);
         userinfo.push({
           username: result[0].Username,
           password: result[0].Password
         });
-        console.log("Hey1");
-        console.log(userinfo);
         res.contentType('application/json');
         res.send(JSON.stringify(userinfo));
-
       }
     }
   });
-
-  // If login credentials are wrong, do something
-  // If login credentials are correct, send the User ID and username
-  // to front-end at Profile.jsx
 });
 
 app.get('/users', (req, res, next) => {
@@ -180,7 +165,7 @@ app.post('/coordinates', (req, res) => {
   const longitude = param.longitude;
   const latitude = param.latitude;
 
-  // todo:
+  // ivan todo:
   // Need to replace query with '1' to respective user ID
 
   if (longitude === 0 && latitude === 0) {

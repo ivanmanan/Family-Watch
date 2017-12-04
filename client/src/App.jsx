@@ -23,11 +23,6 @@ class App extends Component {
     this.logout = this.logout.bind(this);
   }
 
-  // yb todo:
-  // Make this function passed to Profile.jsx
-  // See the render function at the bottom of this file
-  // and how I did appendHistory function
-
   login() {
     this.setState({
       loggedIn: true
@@ -105,45 +100,64 @@ class App extends Component {
     }
   }
 
-  // ivan todo:
-  // If login flag is false, then do not display anything
-  // This is just a simple conditional
   render() {
-    return (
-      <div className="App">
 
-        <nav className="navbar navbar-inverse navbar-static-top">
-          <div className="navbar-header">
-	          <h1 className="navbar-brand" id="heading">Family Watch</h1>
-	        </div>
-        </nav>
+    if (!this.state.loggedIn)
+      return (
+        <div className="App">
 
-        <div className="row">
+          <nav className="navbar navbar-inverse navbar-static-top">
+            <div className="navbar-header">
+	            <h1 className="navbar-brand" id="heading">Family Watch</h1>
+	          </div>
+          </nav>
 
-          <div className="Profile-block
-            col-md-2
-            col-sm-2
-            col-xs-2">
-            <Profile login={this.login} loggedIn={this.state.loggedIn} loginFailed={this.loginFailed} loginTried={this.state.loginTried} logout={this.logout}/>
+          <div className="row">
+
+            <div className="Profile-block
+              col-md-2
+              col-sm-2
+              col-xs-2">
+              <Profile login={this.login} loggedIn={this.state.loggedIn} loginFailed={this.loginFailed} loginTried={this.state.loginTried} logout={this.logout}/>
+            </div>
           </div>
-
-          <div className="Maps-block
-            col-md-7
-            col-sm-6
-            col-xs-6">
-            <Maps history={this.state.history}/>
-          </div>
-
-          <div className="Panel-block
-            col-md-3
-            col-sm-4
-            col-xs-4">
-            <Panel appendHistory={this.appendHistory}/>
-          </div>
-
         </div>
-      </div>
-    );
+      );
+    else
+      return (
+        <div className="App">
+
+          <nav className="navbar navbar-inverse navbar-static-top">
+            <div className="navbar-header">
+	            <h1 className="navbar-brand" id="heading">Family Watch</h1>
+	          </div>
+          </nav>
+
+          <div className="row">
+
+            <div className="Profile-block
+              col-md-2
+              col-sm-2
+              col-xs-2">
+              <Profile login={this.login} loggedIn={this.state.loggedIn} loginFailed={this.loginFailed} loginTried={this.state.loginTried} logout={this.logout}/>
+            </div>
+            <div className="Maps-block
+              col-md-7
+              col-sm-6
+              col-xs-6">
+              <Maps history={this.state.history}/>
+            </div>
+
+            <div className="Panel-block
+              col-md-3
+              col-sm-4
+              col-xs-4">
+              <Panel appendHistory={this.appendHistory}/>
+            </div>
+
+          </div>
+        </div>
+      );
   }
 }
 

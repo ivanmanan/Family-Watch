@@ -10,6 +10,7 @@ class Profile extends Component {
     super(props);
     this.state = { username: sessionStorage.getItem('username'), userLogin: [] };
     this.onSubmit = this.handleSubmit.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   handleSubmit(e) {
@@ -59,18 +60,12 @@ class Profile extends Component {
     }
   }
 
+  reset() {
+    // Default setting is clear form
+    console.log("Clearing login form.");
+  }
 
-  // yb todo:
-  // Replace form after successful login with another component of the username
-  // This will be replaced after login flag is sent to parent component
-  // Make an if-else React component
-  // https://reactjs.org/docs/conditional-rendering.html
-  // You may want to make login as a state here
   render() {
-
-    function reset() {
-      document.getElementsById("input").value="";
-    }
 
     //  user is logged in
     if(this.props.loggedIn === "true" || this.props.loggedIn === true) {
@@ -100,7 +95,7 @@ class Profile extends Component {
             <input type="text" id="input" placeholder="Username" ref="username"/>
             <input type="password" placeholder="Password" ref="password"/>
             <p style={pStyle}>Wrong username or password!</p>
-            <button onclick="reset()">Log In</button>
+            <button onClick={this.reset}>Log In</button>
           </form>
           <img id="eye-logo" src="/images/sauron.png" alt="Police-Watch"/>
           <Location/>
@@ -116,7 +111,7 @@ class Profile extends Component {
             <input type="text" id="input" placeholder="Username" ref="username"/>
             <input type="password" placeholder="Password" ref="password"/>
             <br/><br/>
-            <button onclick="reset()">Log In</button>
+            <button onClick={this.reset}>Log In</button>
           </form>
           <img id="eye-logo" src="/images/sauron.png" alt="Police-Watch"/>
           <Location/>
