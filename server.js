@@ -179,9 +179,13 @@ app.post('/coordinates', (req, res) => {
   else {
     console.log("Inserting into database:")
     console.log("Longitude: " + longitude);
-    console.log("Latitude: " + latitude + "\n");
+    console.log("Latitude: " + latitude);
     connection.query('INSERT INTO GPS (hid, Longitude, Latitude) VALUES ("'
-                     + trackID + '", "' + longitude + '", "' + latitude + '");');
+                     + trackID + '", "' + longitude + '", "' + latitude + '");', (err, result, fields) => {
+                       if (err) console.log("Unable to insert into database. Skipping GPS insertion.");
+                       else
+                         console.log("Insertion successful!\n");
+                     });
   }
 
   res.end("Success!");

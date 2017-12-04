@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 var counter = 0;
-var TIME = 6000;
+var TIME = 4000;
 
 export class Maps extends Component {
   constructor(props) {

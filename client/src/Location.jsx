@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 const FIVE_MINUTES = 1000 * 60 * 5;
 /* const TIME = FIVE_MINUTES;*/
-const TIME = FIVE_MINUTES;
+const TIME = 6000;
 
 class Location extends Component {
   constructor(props) {
