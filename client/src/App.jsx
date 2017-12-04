@@ -101,8 +101,6 @@ class App extends Component {
   }
 
   render() {
-    console.log("User ID:");
-    console.log(this.state.user_id);
 
     if (!this.state.loggedIn)
       return (
@@ -123,7 +121,7 @@ class App extends Component {
               <Profile login={this.login} loggedIn={this.state.loggedIn}
                        loginFailed={this.loginFailed}
                        loginTried={this.state.loginTried} logout={this.logout}
-                       trackID={this.state.user_id}/>
+              />
             </div>
           </div>
         </div>
@@ -147,7 +145,7 @@ class App extends Component {
               <Profile login={this.login} loggedIn={this.state.loggedIn}
                        loginFailed={this.loginFailed}
                        loginTried={this.state.loginTried} logout={this.logout}
-                       trackID={this.state.user_id}/>
+              />
             </div>
             <div className="Maps-block
               col-md-7

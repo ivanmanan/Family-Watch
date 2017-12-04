@@ -11,7 +11,7 @@ class Profile extends Component {
     this.state = {
       username: sessionStorage.getItem('username'),
       userLogin: [],
-      trackID: this.props.trackID
+      trackID: null
     };
     this.onSubmit = this.handleSubmit.bind(this);
     this.reset = this.reset.bind(this);
@@ -52,7 +52,10 @@ class Profile extends Component {
           //  if login was successful
           if(this.state.userLogin[0]) {
             console.log("Login Success!");
-            this.setState({username: this.state.userLogin[0].username});
+            this.setState({
+              username: this.state.userLogin[0].username,
+              trackID: this.state.userLogin[0].user_id
+            });
             sessionStorage.setItem('username', this.state.userLogin[0].username);
             sessionStorage.setItem('user_id', this.state.userLogin[0].user_id);
             this.props.login();

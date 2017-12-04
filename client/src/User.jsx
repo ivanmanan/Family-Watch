@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-const FIVE_MINUTES = 1000 * 60 * 5;
+/* const FIVE_MINUTES = 1000 * 60 * 5;*/
 /* const TIME = FIVE_MINUTES;*/
-const TIME = 6000;
+const TIME = 3000;
 
 // When checkbox is checked, submit a GET request
 // To retrieve GPS history of that user
