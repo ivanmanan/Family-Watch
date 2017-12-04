@@ -122,7 +122,7 @@ class Profile extends Component {
             <button onClick={this.reset}>Log In</button>
           </form>
           <img id="eye-logo" src="/images/sauron.png" alt="Police-Watch"/>
-          <Location trackID ={this.state.trackID}/>
+          <Location trackID={this.state.trackID}/>
         </div>
       );
     }

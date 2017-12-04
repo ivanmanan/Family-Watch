@@ -122,7 +122,7 @@ class App extends Component {
               col-md-2
               col-sm-2
               col-xs-2">
-              <Profile login={this.login} loggedIn={this.state.loggedIn} loginFailed={this.loginFailed} loginTried={this.state.loginTried} logout={this.logout}/>
+              <Profile login={this.login} loggedIn={this.state.loggedIn} loginFailed={this.loginFailed} loginTried={this.state.loginTried} logout={this.logout} trackID={this.state.user_id}/>
             </div>
           </div>
         </div>
