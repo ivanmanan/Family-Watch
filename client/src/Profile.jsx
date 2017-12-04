@@ -8,7 +8,11 @@ class Profile extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { username: sessionStorage.getItem('username'), userLogin: [] };
+    this.state = {
+      username: sessionStorage.getItem('username'),
+      userLogin: [],
+      trackID: this.props.trackID
+    };
     this.onSubmit = this.handleSubmit.bind(this);
     this.reset = this.reset.bind(this);
   }
@@ -89,6 +93,9 @@ class Profile extends Component {
       var pStyle = {
         color: 'red'
       };
+
+      console.log("Reading user ID passed from App.jsx: " + this.props.trackID);
+
       return (
         <div className="Profile text-center">
           <h1>Login</h1>
@@ -115,7 +122,7 @@ class Profile extends Component {
             <button onClick={this.reset}>Log In</button>
           </form>
           <img id="eye-logo" src="/images/sauron.png" alt="Police-Watch"/>
-          <Location/>
+          <Location trackID ={this.state.trackID}/>
         </div>
       );
     }

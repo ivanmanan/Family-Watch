@@ -166,11 +166,15 @@ app.post('/coordinates', (req, res) => {
   const param = req.body;
   const longitude = param.longitude;
   const latitude = param.latitude;
+  var trackID = param.trackID;
+
+  console.log("Seeing server trackID:");
+  console.log(trackID + '\n');
 
   // ivan todo:
   // Need to replace query with '1' to respective user ID
 
-  if (longitude === 0 && latitude === 0) {
+  if (longitude === 0 && latitude === 0 || typeof trackID === 'undefined') {
     console.log("Setting up GPS...\n")
   }
   else {
@@ -178,7 +182,7 @@ app.post('/coordinates', (req, res) => {
     console.log("Longitude: " + longitude);
     console.log("Latitude: " + latitude + "\n");
     connection.query('INSERT INTO GPS (hid, Longitude, Latitude) VALUES ("'
-                     + 1 + '", "' + longitude + '", "' + latitude + '");');
+                     + trackID + '", "' + longitude + '", "' + latitude + '");');
   }
 
   res.end("Success!");

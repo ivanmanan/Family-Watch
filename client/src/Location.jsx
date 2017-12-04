@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 
 const FIVE_MINUTES = 1000 * 60 * 5;
 /* const TIME = FIVE_MINUTES;*/
-const TIME = 15000;
+const TIME = 6000;
 
 class Location extends Component {
   constructor(props) {
     super(props);
     this.state = {
       longitude: 0,
-      latitude: 0
+      latitude: 0,
+      trackID: this.props.trackID
     };
   }
 
@@ -26,6 +27,7 @@ class Location extends Component {
 
   // Updates GPS state
   getLocation() {
+    console.log("Reading user ID passed from User.jsx: " + this.state.trackID);
 
     console.log("Retrieving location...");
     // Need to specify high accuracy is off
@@ -51,7 +53,8 @@ class Location extends Component {
       method: 'POST',
       body: JSON.stringify({
         longitude: this.state.longitude,
-        latitude: this.state.latitude
+        latitude: this.state.latitude,
+        trackID: this.state.trackID
       })
     })
       .then(function(body) {
