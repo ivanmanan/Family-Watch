@@ -42,6 +42,7 @@ class App extends Component {
     });
 
     sessionStorage.setItem('loggedIn', false);
+    sessionStorage.setItem('user_id', null);
   }
 
   loginFailed() {
