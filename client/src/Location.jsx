@@ -38,11 +38,13 @@ class Location extends Component {
           longitude: (position.coords.longitude).toFixed(6),
           latitude: (position.coords.latitude).toFixed(6),
           trackID: this.props.trackID
+        }, () => {
+          this.postLocation();
         });
       },
       error => console.log(error)
     );
-    this.postLocation();
+
   }
 
   // Send POST request with the data to the server

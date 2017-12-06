@@ -54,12 +54,17 @@ export class Maps extends Component {
     const curr = this.state.currentLocation;
 
     const google = this.props.google;
-    const maps = google.maps;
 
-    if (map) {
-      let center = new maps.LatLng(curr.lat, curr.lng)
-      map.panTo(center)
-    }
+    // Hot change -- may need to be deleted
+    if (typeof google != 'undefined')
+      if (typeof google.maps != 'undefined') {
+        const maps = google.maps;
+
+        if (map) {
+          let center = new maps.LatLng(curr.lat, curr.lng)
+          map.panTo(center)
+        }
+      }
   }
 
   componentDidMount() {

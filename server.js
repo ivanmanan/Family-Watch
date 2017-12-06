@@ -80,9 +80,9 @@ app.post('/login', (req, res) => {
         res.send(JSON.stringify(userinfo));
       }
       else {
-        console.log(result[0].Username);
-        console.log(result[0].Password);
-        console.log(result[0].User_ID);
+        console.log(result[0].Username + " has logged in.\n");
+        //console.log(result[0].Password);
+        //console.log(result[0].User_ID);
         userinfo.push({
           username: result[0].Username,
           password: result[0].Password,
@@ -97,11 +97,12 @@ app.post('/login', (req, res) => {
 
 app.get('/users', (req, res, next) => {
 
-  console.log("Running query...");
+  // console.log("Running query...");
   connection.query('SELECT * FROM User', (err, result, fields) => {
     if (err) throw err;
     else {
-      console.log("Retrieving list of users.\n");
+      console.log("Another client has been connected to the server.\n")
+      // console.log("Retrieving list of users.\n");
 
       res.json([
         {
@@ -139,9 +140,9 @@ app.post('/history', (req, res) => {
         throw err;
       }
       else {
-        console.log("Running query...");
+        //console.log("Running query...");
         // Replace user with actual person getting queried
-        console.log("Retrieving GPS history\n");
+        //console.log("Retrieving GPS history\n");
 
         var history = [];
         for (var i = 0; i < result.length; i++) {
@@ -170,8 +171,8 @@ app.post('/coordinates', (req, res) => {
   const latitude = param.latitude;
   var trackID = param.trackID;
 
-  console.log("Seeing server trackID:");
-  console.log(trackID + '\n');
+  console.log("Seeing server trackID: " + trackID);
+
 
   if (longitude === 0 && latitude === 0 || isNaN(trackID)) {
     console.log("Setting up GPS...\n")
@@ -182,7 +183,7 @@ app.post('/coordinates', (req, res) => {
     console.log("Latitude: " + latitude);
     connection.query('INSERT INTO GPS (hid, Longitude, Latitude) VALUES ("'
                      + trackID + '", "' + longitude + '", "' + latitude + '");', (err, result, fields) => {
-                       if (err) console.log("Unable to insert into database. Skipping GPS insertion.");
+                       if (err) console.log("Unable to insert into database. Skipping GPS insertion.\n");
                        else
                          console.log("Insertion successful!\n");
                      });
