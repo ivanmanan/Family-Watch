@@ -20,9 +20,9 @@
 1. Install [Node.js](https://nodejs.org/en/download/).
 2. Install all Node.js dependencies.
    ```bash
-   cd /path/to/police-watch/
+   cd /path/to/family-watch/
    npm install
-   cd /path/to/police-watch/client
+   cd /path/to/family-watch/client
    npm install
    ```
 3. Install MySQL.
@@ -41,7 +41,8 @@
    ```
 
 6. Run the SQL script to set-up the bare-essentials for the database. Make sure
-   you are running this command in the police-watch directory.
+   you are running this command in the police-watch directory. [Deprecated:
+   Needs to be changed to 'family' instead of 'police' in a newer version]
    ```bash
    $ mysql -u root -p
    mysql> create database police;
@@ -56,14 +57,14 @@
    npm install --save react-bootstrap
    ```
 
-8. Run on localhost.
-   ```bash
-   npm start
-   ```
-
-9. Generate certificates in the police-watch directory.
+8. Generate certificates in the family-watch directory.
    ```bash
    ./genererate-certificates.sh
+   ```
+
+9. Run on localhost.
+   ```bash
+   npm start
    ```
 
 ## Division
