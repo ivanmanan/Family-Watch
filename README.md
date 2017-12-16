@@ -1,18 +1,14 @@
 # Content
 * Expected Functionalities
 * Installation Instructions
-* Division
+* Server Setup
 * Resources
 
 ## Expected Functionalities
 
-1. The host will be logged into the web application and see everyone’s
-   location. As the host gets closer to a participant, the host will have
-   directions pointing to his or her location.
+1. Participants will be logged in and their locations will be tracked.
 
-2. Participants will be logged in and their locations will be tracked.
-
-3. The host will be able to see location history of all
+2. The host will be able to see location history of all
    the participants after every certain interval of time.
 
 ## Installation Instructions
@@ -41,13 +37,12 @@
    ```
 
 6. Run the SQL script to set-up the bare-essentials for the database. Make sure
-   you are running this command in the police-watch directory. [Deprecated:
-   Needs to be changed to 'family' instead of 'police' in a newer version]
+   you are running this command in the family-watch directory.
    ```bash
    $ mysql -u root -p
-   mysql> create database police;
-   mysql> use police;
-   mysql> source ./police.sql;
+   mysql> create database family;
+   mysql> use family;
+   mysql> source ./family.sql;
    mysql> exit
    ```
 
@@ -67,15 +62,16 @@
    npm start
    ```
 
-## Division
+## Server Setup
 
-1. Get GPS working on mobile devices. Get server setup. Be able to render Maps
-   onto front-end. Create and query MySQL in Node.js.
+When hosting projects over WLAN, the firewall must be configured. In Ubuntu, the
+ufw (uncomplicated firewall) must allow incoming messages.
 
-2. Set-up user accounts. Be able to personalize on front-end and back-end.
-
-3. Set-up location history. Host be able to see all locations [hopefully] in
-   real time.
+Procedure:
+   ```bash
+   Super-s, search 'Firewall', click 'Firewall configuration', then change
+   'Incoming' section to 'Allow'
+   ```
 
 ## Resources
 
@@ -101,5 +97,5 @@ general feel of these libraries.
 7. [Setting up
    server](https://www.fullstackreact.com/articles/using-create-react-app-with-a-server/)
 
-8. [See Proposal](https://github.com/ivanmanan/police-watch/blob/master/reads/TeamNeighborhood.pdf)
+8. [See Proposal](https://github.com/ivanmanan/family-watch/blob/master/reads/TeamNeighborhood.pdf)
 

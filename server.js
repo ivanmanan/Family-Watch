@@ -38,8 +38,8 @@ var port = process.env.PORT || 3001;
 
 // Set to HTTPS for GPS sharing
 const httpsOptions = {
-  cert: fs.readFileSync(path.join(__dirname, 'ssl', 'police.crt')),
-  key: fs.readFileSync(path.join(__dirname, 'ssl', 'police.key'))
+  cert: fs.readFileSync(path.join(__dirname, 'ssl', 'family.crt')),
+  key: fs.readFileSync(path.join(__dirname, 'ssl', 'family.key'))
 }
 
 
@@ -101,7 +101,7 @@ app.get('/users', (req, res, next) => {
   connection.query('SELECT * FROM User', (err, result, fields) => {
     if (err) throw err;
     else {
-      console.log("Another client has been connected to the server.\n")
+      //console.log("Another client has been connected to the server.\n")
       // console.log("Retrieving list of users.\n");
 
       res.json([

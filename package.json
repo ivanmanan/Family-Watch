@@ -1,7 +1,7 @@
 {
-  "name": "police-watch",
+  "name": "family-watch",
   "version": "1.0.0",
-  "description": "Police location tracker",
+  "description": "Family Watch",
   "main": "server.js",
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
@@ -14,7 +14,7 @@
     "url": "git+https://github.com/ivanmanan/JumbleXplore.git"
   },
   "keywords": [
-    "Police",
+    "Family",
     "Neighborhood"
   ],
   "author": "Ivan Manan, Yongbum, Lewis, and Brian",
