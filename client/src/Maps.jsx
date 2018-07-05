@@ -6,6 +6,9 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 var counter = 0;
 var TIME = 3000;
 
+const INITIAL_LAT = 34.068691;
+const INITIAL_LON = -118.449745;
+
 export class Maps extends Component {
   constructor(props) {
     super(props);
@@ -218,8 +221,8 @@ Maps.propTypes = {
 Maps.defaultProps = {
   zoom: 13,
   initialCenter: {
-    lat: 34.068691,
-    lng: -118.449745
+    lat: INITIAL_LAT,
+    lng: INITIAL_LON
   },
   centerAroundCurrentLocation: true,
   onMove: function() {} // default prop
