@@ -10,7 +10,7 @@
     "react-geolocated": "^2.2.1",
     "react-geolocation": "^1.0.3",
     "react-https-redirect": "^1.0.9",
-    "react-scripts": "^1.1.4"
+    "react-scripts": "^3.1.1"
   },
   "scripts": {
     "start": "BROWSER=none HTTPS=true react-scripts start",
